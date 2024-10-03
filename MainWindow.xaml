@@ -13,7 +13,6 @@
             <Button Click="Button_Click">
                 Login
             </Button>
-                <Button Click="Button_Click_1">LoadBets</Button>
         </StackPanel>
         <StackPanel x:Name="stpOngoingBets">
 
