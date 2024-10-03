@@ -25,7 +25,7 @@ namespace SportFogadas
             
         }
 
-        public void WriteDebugInfo(string message)
+        public void Write(string message)
         {
             if (txtDebug != null)
             {

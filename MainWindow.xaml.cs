@@ -39,15 +39,15 @@ namespace SportFogadas
                 try
                 {
                     connection.Open();
-                    debugWindow.WriteDebugInfo("Connected to MySQL Server");
-                    debugWindow.WriteDebugInfo("Connection String: " + connectionString);
+                    debugWindow.Write("Connected to MySQL Server");
+                    debugWindow.Write("Connection String: " + connectionString);
                     
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error connecting to MySQL Server: " + ex.Message);
-                    debugWindow.WriteDebugInfo("Error connecting to MySQL Server: " + ex.Message);
+                    debugWindow.Write("Error connecting to MySQL Server: " + ex.Message);
                     this.Close();
                 }
             }
