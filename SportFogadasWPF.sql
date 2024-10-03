@@ -11,7 +11,7 @@ CREATE TABLE `Bets` (
 CREATE TABLE `Bettors` (
   `BettorsID` INT PRIMARY KEY AUTO_INCREMENT,
   `Username` VARCHAR(50) NOT NULL,
-  `Password` VARCHAR(50) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
   `Balance` INT NOT NULL DEFAULT 0,
   `Email` VARCHAR(100) NOT NULL,
   `JoinDate` DATE NOT NULL,

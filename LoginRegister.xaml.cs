@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+
 
 namespace SportFogadas
 {
@@ -21,10 +23,11 @@ namespace SportFogadas
     /// </summary>
     public partial class LoginRegister : Window
     {
-        public LoginRegister(string userName)
+        DebugWindow debugWindow;
+        public LoginRegister(DebugWindow debugWindow)
         {
-            UserName = userName;
             InitializeComponent();
+            this.debugWindow = debugWindow;
         }
 
         public string UserName { get; internal set; }
@@ -33,6 +36,7 @@ namespace SportFogadas
         {
             string tempUserName = txbLoginUsername.Text;
             string password = pswLoginPassword.Password;
+
 
             string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -50,8 +54,10 @@ namespace SportFogadas
                             reader.Read();
 
                             string dbPassword = reader.GetString(0);
-
-                            if (string.Equals(password, dbPassword))
+                            debugWindow.Write(dbPassword);
+                            debugWindow.Write(PasswordHasher(password));
+                            debugWindow.Write((PasswordHasher(password) == dbPassword).ToString());
+                            if (PasswordHasher(password) == dbPassword)
                             {
                                 UserName = tempUserName;
                                 MessageBox.Show("Login successful!");
@@ -86,7 +92,8 @@ namespace SportFogadas
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", UserName);
-                    command.Parameters.AddWithValue("@Password", password);
+                    command.Parameters.AddWithValue("@Password", PasswordHasher(password));
+                    debugWindow.Write(PasswordHasher(password));
                     command.Parameters.AddWithValue("@Email", email);
                     command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
                     connection.Open();
@@ -104,6 +111,32 @@ namespace SportFogadas
                 }
             }
         }
+
+        public string PasswordHasher(string passwordIn)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                return GetHash(sha256Hash, passwordIn);
+            }
+        }
+        #region Microsoft Hash Code
+        private static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        {
+
+            byte[] data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+
+            var sBuilder = new StringBuilder();
+
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            return sBuilder.ToString();
+        }
+        #endregion
 
         private void btnShowLogin_Click(object sender, RoutedEventArgs e)
         {

@@ -81,13 +81,11 @@ namespace SportFogadas
             });
 
             #endregion
-
-            Login();
         }
 
         public void Login()
         {
-            LoginRegister loginRegister = new LoginRegister(userName);
+            LoginRegister loginRegister = new LoginRegister(debugWindow);
             loginRegister.ShowDialog();
 
             if (loginRegister.DialogResult.HasValue && loginRegister.DialogResult.Value)
@@ -145,5 +143,10 @@ namespace SportFogadas
 
         }
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
     }
 }
