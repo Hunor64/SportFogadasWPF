@@ -20,35 +20,50 @@ namespace SportFogadas
     /// </summary>
     public partial class OrganiserPanel : Window
     {
-        public OrganiserPanel()
+        DebugWindow debugWindow;
+        public OrganiserPanel(DebugWindow debugWindow)
         {
             InitializeComponent();
+            this.debugWindow = debugWindow;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
-            connection.Open();
-            string query = "INSERT INTO Events (EventName, EventDate, Category, Location) VALUES (@EventName, @EventDate, @Category, @Location)";
-            using (MySqlCommand command = new MySqlCommand(query, connection))
+
+            try
             {
-                command.Parameters.AddWithValue("@EventName", txbEventName);
-                command.Parameters.AddWithValue("@EventDate", dtpEventDate);
-                command.Parameters.AddWithValue("@Category", txbCategory);
-                command.Parameters.AddWithValue("@Location", txbLocation);
                 connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
-                if (rowsAffected > 0)
+                string query = "INSERT INTO Events (EventName, EventDate, Category, Location) VALUES (@EventName, @EventDate, @Category, @Location)";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    MessageBox.Show("Event created successfully!");
-                    this.DialogResult = true;
-                    connection.Close();
-                    this.Close();
+                    command.Parameters.AddWithValue("@EventName", txbEventName);
+                    command.Parameters.AddWithValue("@EventDate", dtpEventDate);
+                    command.Parameters.AddWithValue("@Category", txbCategory);
+                    command.Parameters.AddWithValue("@Location", txbLocation);
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Event created successfully!");
+                        debugWindow.Write("Event created successfully!");
+                        this.DialogResult = true;
+                        connection.Close();
+                        this.Close();
+                    }
+                    else
+                    {
+                        debugWindow.Write("Failed to create event!");
+                        MessageBox.Show("Failed to create event!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Failed to create event!");
-                }
+            }
+            catch (Exception ex)
+            {
+                debugWindow.Write("Failed to create event!");
+                debugWindow.Write(ex.ToString());
+                MessageBox.Show("Failed to create event!");
+                throw;
             }
         }
     }

@@ -92,27 +92,38 @@ namespace SportFogadas
             string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate) VALUES (@Username, @Password, @Email, @JoinDate)";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                try
                 {
-                    command.Parameters.AddWithValue("@Username", UserName);
-                    command.Parameters.AddWithValue("@Password", PasswordHasher(password));
-                    debugWindow.Write(PasswordHasher(password));
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate) VALUES (@Username, @Password, @Email, @JoinDate)";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        MessageBox.Show("User registered successfully!");
-                        this.DialogResult = true;
-                        connection.Close();
-                        this.Close();
+                        command.Parameters.AddWithValue("@Username", UserName);
+                        command.Parameters.AddWithValue("@Password", PasswordHasher(password));
+                        debugWindow.Write(PasswordHasher(password));
+                        command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            debugWindow.Write("User registered successfully!");
+                            MessageBox.Show("User registered successfully!");
+                            this.DialogResult = true;
+                            connection.Close();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to register user!");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Failed to register user!");
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to register user!");
+                    debugWindow.Write("Failed to register user!");
+                    debugWindow.Write(ex.ToString());
+                    throw;
                 }
             }
         }
