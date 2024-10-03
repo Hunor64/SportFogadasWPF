@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,29 +19,43 @@ namespace SportFogadas
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DebugWindow debugWindow;
+        public bool debugOn = true;
+
         public MainWindow()
         {
             InitializeComponent();
+            debugWindow = new DebugWindow(this,debugOn);
+            debugWindow.Show();
             ConnectToMySql();
         }
 
         public void ConnectToMySql()
         {
-            string connectionString = "Server=87.248.157.245;Database=nhgmuyyb_Bets;Uid=nhgmuyyb_sql;Pwd=SuliSqlJelszó;";
+            string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    MessageBox.Show("Connected to MySQL Server");
+                    debugWindow.WriteDebugInfo("Connected to MySQL Server");
+                    debugWindow.WriteDebugInfo("Connection String: " + connectionString);
+                    
                     connection.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error connecting to MySQL Server: " + ex.Message);
+                    debugWindow.WriteDebugInfo("Error connecting to MySQL Server: " + ex.Message);
+                    this.Close();
                 }
             }
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            debugWindow.Close();
         }
     }
 }
