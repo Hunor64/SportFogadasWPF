@@ -8,15 +8,23 @@
         Title="LoginRegister" Height="450" Width="300">
     <Grid>
         <StackPanel x:Name="stpLogin">
+            <Label>Username:</Label>
             <TextBox x:Name="txbLoginUsername"></TextBox>
+            <Label>Password:</Label>
             <PasswordBox x:Name="pswLoginPassword"></PasswordBox>
             <Button x:Name="btnLogin" Click="btnLogin_Click">Login</Button>
+            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Register</Button>
         </StackPanel>
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
+            <Label>Username:</Label>
             <TextBox x:Name="txbRegisterUsername"></TextBox>
+            <Label>Email</Label>
             <TextBox x:Name="txbRegisterEmail"></TextBox>
+            <Label>Password:</Label>
             <PasswordBox x:Name="pswRegisterPassword"></PasswordBox>
-            <Button x:Name="btnRegister" Click="btnRegister_Click">Login</Button>
+            <Button x:Name="btnRegister" Click="btnRegister_Click">Register</Button>
+            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click">Login</Button>
         </StackPanel>
+        
     </Grid>
 </Window>

@@ -21,7 +21,7 @@ namespace SportFogadas
     /// </summary>
     public partial class MainWindow : Window
     {
-        public bool debugOn = false;
+        public bool debugOn = true;
 
         #region Initial Variables
         private DebugWindow debugWindow;
@@ -59,17 +59,17 @@ namespace SportFogadas
             #endregion
 
             #region Read Events From Database
-            var reader = ReadDB("SELECT * FROM Events");
+            var eventReader = ReadDB("SELECT * FROM Events");
 
-            while (reader.Read())
+            while (eventReader.Read())
             {
                 events.Add(new Events()
                 {
-                    EventID = reader.GetInt32("EventID"),
-                    EventName = reader.GetString("EventName"),
-                    EventDate = reader.GetDateTime("EventDate"),
-                    Category = reader.GetString("Category"),
-                    Location = reader.GetString("Location")
+                    EventID = eventReader.GetInt32("EventID"),
+                    EventName = eventReader.GetString("EventName"),
+                    EventDate = eventReader.GetDateTime("EventDate"),
+                    Category = eventReader.GetString("Category"),
+                    Location = eventReader.GetString("Location")
                 });
             }
             debugWindow.Write($"{events.Count} events read from database");

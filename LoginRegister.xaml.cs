@@ -75,7 +75,46 @@ namespace SportFogadas
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            UserName = txbRegisterUsername.Text;
+            string password = pswRegisterPassword.Password;
+            string email = txbRegisterEmail.Text;
 
+            string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate) VALUES (@Username, @Password, @Email, @JoinDate)";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", UserName);
+                    command.Parameters.AddWithValue("@Password", password);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("User registered successfully!");
+                        this.DialogResult = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to register user!");
+                    }
+                }
+            }
+        }
+
+        private void btnShowLogin_Click(object sender, RoutedEventArgs e)
+        {
+            stpLogin.Visibility = Visibility.Visible;
+            stpRegister.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnShowRegister_Click(object sender, RoutedEventArgs e)
+        {
+            stpLogin.Visibility = Visibility.Collapsed;
+            stpRegister.Visibility = Visibility.Visible;
         }
     }
 }
