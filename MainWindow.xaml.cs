@@ -27,7 +27,9 @@ namespace SportFogadas
         private DebugWindow debugWindow;
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
         List<Events> events = new List<Events>();
+        List<UserBets> bets = new List<UserBets>();
         string userName = "";
+        int userID = -1;
 
         bool loggedIn = false;
         #endregion
@@ -91,15 +93,53 @@ namespace SportFogadas
             if (loginRegister.DialogResult.HasValue && loginRegister.DialogResult.Value)
             {
                 userName = loginRegister.UserName;
+                userID = loginRegister.UserId;
                 loggedIn = true;
                 debugWindow.Write(userName);
+                debugWindow.Write(userID.ToString());
+                //LoadUserBets();
             }
             else
             {
                 loggedIn = false;
             }
+
         }
 
+        public void LoadUserBets()
+        {
+            var betReader = ReadDB($"SELECT * FROM UserBets WHERE BettorsID = {userID}");
+            while (betReader.Read())
+            {
+                bets.Add(new UserBets()
+                {
+                    BetID = betReader.GetInt32("BetID"),
+                    BettorsID = betReader.GetInt32("BettorsID"),
+                    EventID = betReader.GetInt32("EventID"),
+                    Amount = betReader.GetInt32("Amount"),
+                    BetDate = betReader.GetDateTime("BetDate"),
+                    Odds = betReader.GetFloat("Odds"),
+                    Status = betReader.GetBoolean("Status")
+                });
+
+            }
+
+            debugWindow.Write($"{bets.Count} bets read from database");
+
+            var stack = stpOngoingBets;
+            foreach (var bet in bets)
+            {
+                debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
+
+                stack.Children.Add
+                    (
+                    new TextBlock()
+                    {
+                        Text = $"{bet.BetID},{bet.BettorsID},{bet.EventID},{bet.Amount},{bet.BetDate},{bet.Odds},{bet.Status}"
+                    }
+                    );
+            }
+        }
 
         #region Database Functions
         public void Exec(string command)

@@ -31,6 +31,8 @@ namespace SportFogadas
         }
 
         public string UserName { get; internal set; }
+        public int UserId { get; internal set; }
+
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +43,7 @@ namespace SportFogadas
             string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT Password FROM Bettors WHERE Username = @Username";
+                string query = "SELECT * FROM Bettors WHERE Username = @Username";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", tempUserName);
@@ -53,15 +55,17 @@ namespace SportFogadas
                         {
                             reader.Read();
 
-                            string dbPassword = reader.GetString(0);
+                            string dbPassword = reader.GetString("Password");
                             debugWindow.Write(dbPassword);
                             debugWindow.Write(PasswordHasher(password));
                             debugWindow.Write((PasswordHasher(password) == dbPassword).ToString());
                             if (PasswordHasher(password) == dbPassword)
                             {
                                 UserName = tempUserName;
+                                UserId = reader.GetInt32("BettorsID");
                                 MessageBox.Show("Login successful!");
                                 this.DialogResult = true;
+                                connection.Close();
                                 this.Close();
                             }
                             else
@@ -102,6 +106,7 @@ namespace SportFogadas
                     {
                         MessageBox.Show("User registered successfully!");
                         this.DialogResult = true;
+                        connection.Close();
                         this.Close();
                     }
                     else
