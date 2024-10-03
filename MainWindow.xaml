@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel x:Name="stpHeader">
+            
+        </StackPanel>
+        <StackPanel x:Name="stpOngoingBets">
 
+        </StackPanel>
+        <StackPanel x:Name="stpCurrentEvents">
+            
+        </StackPanel>
     </Grid>
 </Window>
