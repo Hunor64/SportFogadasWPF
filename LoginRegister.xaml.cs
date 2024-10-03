@@ -23,22 +23,24 @@ namespace SportFogadas
     {
         public LoginRegister(string userName)
         {
+            UserName = userName;
             InitializeComponent();
         }
 
+        public string UserName { get; internal set; }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            string userName = txbLoginUsername.Text;
+            string tempUserName = txbLoginUsername.Text;
             string password = pswLoginPassword.Password;
 
             string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT Password FROM Users WHERE Username = @Username";
+                string query = "SELECT Password FROM Bettors WHERE Username = @Username";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Username", userName);
-
+                    command.Parameters.AddWithValue("@Username", tempUserName);
                     connection.Open();
 
                     using (MySqlDataReader reader = command.ExecuteReader())
@@ -51,7 +53,10 @@ namespace SportFogadas
 
                             if (string.Equals(password, dbPassword))
                             {
+                                UserName = tempUserName;
                                 MessageBox.Show("Login successful!");
+                                this.DialogResult = true;
+                                this.Close();
                             }
                             else
                             {
@@ -66,6 +71,7 @@ namespace SportFogadas
                 }
             }
         }
+
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {

@@ -81,20 +81,24 @@ namespace SportFogadas
 
             #endregion
 
+            Login();
         }
 
         public void Login()
         {
             LoginRegister loginRegister = new LoginRegister(userName);
-            loginRegister.Show();
-            if (userName != "")
+            loginRegister.ShowDialog();
+
+            if (loginRegister.DialogResult.HasValue && loginRegister.DialogResult.Value)
             {
+                userName = loginRegister.UserName;
                 loggedIn = true;
+                MessageBox.Show(userName);
             }
-            else {
+            else
+            {
                 loggedIn = false;
             }
-
         }
 
 
