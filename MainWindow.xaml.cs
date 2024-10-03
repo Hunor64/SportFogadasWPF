@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -34,13 +35,13 @@ namespace SportFogadas
             debugWindow.Show();
             #endregion
 
-            #region Database Connection
+            List<Events> events = new List<Events>();
 
+            #region Database Connection
             try
             {
                 connection.Open();
                 debugWindow.Write("Connected to MySQL Server");
-                connection.Close();
             }
             catch (Exception ex)
             {
@@ -48,8 +49,31 @@ namespace SportFogadas
                 debugWindow.Write("Error connecting to MySQL Server: " + ex.Message);
                 this.Close();
             }
+            #endregion
+
+            #region Read Events From DB
+            var reader = ReadDB("SELECT * FROM Events");
+
+            while (reader.Read())
+            {
+                events.Add(new Events()
+                {
+                    EventID = reader.GetInt32("EventID"),
+                    EventName = reader.GetString("EventName"),
+                    EventDate = reader.GetDateTime("EventDate"),
+                    Category = reader.GetString("Category"),
+                    Location = reader.GetString("Location")
+                });
+            }
+
+            events.ForEach(e =>
+            {
+                debugWindow.Write(e.EventName);
+                var 
+            });
 
             #endregion
+
 
         }
 
