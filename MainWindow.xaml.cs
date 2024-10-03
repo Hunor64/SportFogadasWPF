@@ -28,6 +28,7 @@ namespace SportFogadas
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
         List<Events> events = new List<Events>();
         string userName = "";
+
         bool loggedIn = false;
         #endregion
 
