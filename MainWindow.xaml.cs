@@ -60,6 +60,10 @@ namespace SportFogadas
             }
             #endregion
 
+            ReadEvents();
+        }
+        public void ReadEvents()
+        {
             #region Read Events From Database
             var eventReader = ReadDB("SELECT * FROM Events");
 
@@ -76,6 +80,10 @@ namespace SportFogadas
             }
             debugWindow.Write($"{events.Count} events read from database");
             eventReader.Close();
+            while(stpCurrentEvents.Children.Count != 0)
+            {
+                stpCurrentEvents.Children.RemoveAt(0);
+            }
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
@@ -84,6 +92,7 @@ namespace SportFogadas
 
             #endregion
         }
+
 
         public void Login()
         {
@@ -195,6 +204,7 @@ namespace SportFogadas
             OrganiserPanel organiserPanel = new OrganiserPanel(debugWindow);
 
             organiserPanel.ShowDialog();
+            ReadEvents();
 
         }
     }
