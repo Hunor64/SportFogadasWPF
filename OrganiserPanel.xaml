@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="OrganiserPanel" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel>
+            <Label>Event Name:</Label>
+            <TextBox x:Name="txbEventName"></TextBox>
+            <DatePicker x:Name="dtpEventDate"></DatePicker>
+            <Label>Category</Label>
+            <TextBox x:Name="txbCategory"></TextBox>
+            <Label>Location</Label>
+            <TextBox x:Name="txbLocation"></TextBox>
+            <Button Click="Button_Click">Create</Button>
+        </StackPanel>
     </Grid>
 </Window>
