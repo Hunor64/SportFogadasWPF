@@ -75,7 +75,7 @@ namespace SportFogadas
                 });
             }
             debugWindow.Write($"{events.Count} events read from database");
-
+            eventReader.Close();
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
@@ -97,7 +97,7 @@ namespace SportFogadas
                 loggedIn = true;
                 debugWindow.Write(userName);
                 debugWindow.Write(userID.ToString());
-                //LoadUserBets();
+                LoadUserBets();
             }
             else
             {
@@ -108,7 +108,7 @@ namespace SportFogadas
 
         public void LoadUserBets()
         {
-            var betReader = ReadDB($"SELECT * FROM UserBets WHERE BettorsID = {userID}");
+            var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
             while (betReader.Read())
             {
                 bets.Add(new UserBets()
@@ -123,6 +123,7 @@ namespace SportFogadas
                 });
 
             }
+            betReader.Close();
 
             debugWindow.Write($"{bets.Count} bets read from database");
 
@@ -187,6 +188,11 @@ namespace SportFogadas
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Login();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            LoadUserBets();
         }
     }
 }
