@@ -69,7 +69,7 @@ namespace SportFogadas
             events.ForEach(e =>
             {
                 debugWindow.Write(e.EventName);
-                var 
+                
             });
 
             #endregion
