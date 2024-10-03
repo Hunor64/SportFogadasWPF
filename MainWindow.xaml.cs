@@ -27,6 +27,8 @@ namespace SportFogadas
         private DebugWindow debugWindow;
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
         List<Events> events = new List<Events>();
+        string userName = "";
+        bool loggedIn = false;
         #endregion
 
         public MainWindow()
@@ -79,8 +81,22 @@ namespace SportFogadas
 
             #endregion
 
+        }
+
+        public void Login()
+        {
+            LoginRegister loginRegister = new LoginRegister(userName);
+            loginRegister.Show();
+            if (userName != "")
+            {
+                loggedIn = true;
+            }
+            else {
+                loggedIn = false;
+            }
 
         }
+
 
         #region Database Functions
         public void Exec(string command)
