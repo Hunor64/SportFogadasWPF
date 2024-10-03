@@ -21,21 +21,25 @@ namespace SportFogadas
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool debugOn = false;
+
         #region Initial Variables
         private DebugWindow debugWindow;
-        public bool debugOn = true;
         MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
+        List<Events> events = new List<Events>();
         #endregion
 
         public MainWindow()
         {
             #region Initialize Windows
             InitializeComponent();
-            debugWindow = new DebugWindow(this, debugOn);
-            debugWindow.Show();
+            debugWindow = new DebugWindow(this);
+            if (debugOn)
+            {
+                debugWindow.Show();
+            }
             #endregion
 
-            List<Events> events = new List<Events>();
 
             #region Database Connection
             try
@@ -51,7 +55,7 @@ namespace SportFogadas
             }
             #endregion
 
-            #region Read Events From DB
+            #region Read Events From Database
             var reader = ReadDB("SELECT * FROM Events");
 
             while (reader.Read())
@@ -65,11 +69,12 @@ namespace SportFogadas
                     Location = reader.GetString("Location")
                 });
             }
+            debugWindow.Write($"{events.Count} events read from database");
 
             events.ForEach(e =>
             {
-                debugWindow.Write(e.EventName);
-                
+                debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
+                stpCurrentEvents.Children.Add(new TextBlock() { Text = e.EventName });
             });
 
             #endregion
