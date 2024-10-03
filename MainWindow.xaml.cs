@@ -93,7 +93,7 @@ namespace SportFogadas
             {
                 userName = loginRegister.UserName;
                 loggedIn = true;
-                MessageBox.Show(userName);
+                debugWindow.Write(userName);
             }
             else
             {
