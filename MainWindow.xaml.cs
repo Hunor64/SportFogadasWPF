@@ -189,5 +189,13 @@ namespace SportFogadas
         {
             Login();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OrganiserPanel organiserPanel = new OrganiserPanel(debugWindow);
+
+            organiserPanel.ShowDialog();
+
+        }
     }
 }

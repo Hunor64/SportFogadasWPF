@@ -37,11 +37,10 @@ namespace SportFogadas
                 string query = "INSERT INTO Events (EventName, EventDate, Category, Location) VALUES (@EventName, @EventDate, @Category, @Location)";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@EventName", txbEventName);
-                    command.Parameters.AddWithValue("@EventDate", dtpEventDate);
-                    command.Parameters.AddWithValue("@Category", txbCategory);
-                    command.Parameters.AddWithValue("@Location", txbLocation);
-                    connection.Open();
+                    command.Parameters.AddWithValue("@EventName", txbEventName.Text);
+                    command.Parameters.AddWithValue("@EventDate", dtpEventDate.DisplayDate);
+                    command.Parameters.AddWithValue("@Category", txbCategory.Text);
+                    command.Parameters.AddWithValue("@Location", txbLocation.Text);
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
