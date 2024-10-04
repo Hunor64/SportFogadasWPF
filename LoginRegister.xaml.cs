@@ -23,6 +23,7 @@ namespace SportFogadas
     /// </summary>
     public partial class LoginRegister : Window
     {
+        #region Initialize Components
         DebugWindow debugWindow;
         public LoginRegister(DebugWindow debugWindow)
         {
@@ -32,6 +33,7 @@ namespace SportFogadas
 
         public string UserName { get; internal set; }
         public int UserId { get; internal set; }
+        #endregion
 
         #region Login Button Function
         private void btnLogin_Click(object sender, RoutedEventArgs e)

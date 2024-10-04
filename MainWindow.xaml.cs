@@ -64,6 +64,13 @@ namespace SportFogadas
         #region Read Events From Database
         public void ReadEvents()
         {
+            for (int i = 0; stpCurrentEvents.Children.Count != 0; i++)
+            {
+                debugWindow.Write(stpCurrentEvents.Children.Count.ToString());
+                debugWindow.Write($"Removing child {stpCurrentEvents.Children[0].ToString()}");
+                stpCurrentEvents.Children.Remove(stpCurrentEvents.Children[0]);
+            }
+            events = new List<Events>();
             var eventReader = ReadDB("SELECT * FROM Events");
 
             while (eventReader.Read())
@@ -79,10 +86,6 @@ namespace SportFogadas
             }
             debugWindow.Write($"{events.Count} events read from database");
             eventReader.Close();
-            while (stpCurrentEvents.Children.Count != 0)
-            {
-                stpCurrentEvents.Children.RemoveAt(0);
-            }
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");

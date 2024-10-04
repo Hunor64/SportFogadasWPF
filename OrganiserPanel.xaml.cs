@@ -20,13 +20,16 @@ namespace SportFogadas
     /// </summary>
     public partial class OrganiserPanel : Window
     {
+        #region Initialize Components
         DebugWindow debugWindow;
         public OrganiserPanel(DebugWindow debugWindow)
         {
             InitializeComponent();
             this.debugWindow = debugWindow;
         }
-        #region egister Event Button Function
+        #endregion
+
+        #region Register Event Button Function
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
