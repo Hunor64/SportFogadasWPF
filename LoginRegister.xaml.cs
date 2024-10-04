@@ -225,6 +225,7 @@ namespace SportFogadas
         }
         #endregion
 
+        #region Click Stuff
         private void pswRegisterPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -250,5 +251,6 @@ namespace SportFogadas
         {
             btnLogin_Click();
         }
+        #endregion
     }
 }
