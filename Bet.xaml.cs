@@ -10,10 +10,13 @@ namespace SportFogadas
     /// </summary>
     public partial class Bet : Window
     {
+        #region Fields
         private int userID;
         private DebugWindow debugWindow;
         private MySqlConnection connection;
+        #endregion
 
+        #region Constructor
         public Bet(int userID, DebugWindow debugWindow)
         {
             InitializeComponent();
@@ -22,7 +25,9 @@ namespace SportFogadas
             connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
             LoadEvents();
         }
+        #endregion
 
+        #region Methods
         private void LoadEvents()
         {
             connection.Open();
@@ -58,7 +63,7 @@ namespace SportFogadas
                 return;
             }
 
-            float odds = 1.5f; // Example odds, replace with actual logic
+            float odds = 1.5f;
             SaveBetToDatabase(DateTime.Now, odds, betAmount, userID, eventId, true);
             UpdateBalance(betAmount);
         }
@@ -101,5 +106,6 @@ namespace SportFogadas
             command.ExecuteNonQuery();
             connection.Close();
         }
+        #endregion
     }
 }
