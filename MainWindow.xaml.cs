@@ -259,6 +259,16 @@ namespace SportFogadas
                 LoadUserBets();
             }
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (userID != -1)
+            {
+                Bet betWindow  = new Bet(userID, debugWindow);
+                betWindow.ShowDialog();
+                LoadUserBets();
+            }
+        }
         #endregion
     }
 }

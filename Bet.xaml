@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Bet" Height="450" Width="800">
+        Title="Bet" Height="450" Width="300">
     <Grid>
-        
+        <ComboBox x:Name="EventComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="BetAmountTextBox" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button Content="Place Bet" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="100" Click="PlaceBetButton_Click"/>
     </Grid>
 </Window>
