@@ -5,43 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        Background="#f0f0f0">
     <Grid>
         <StackPanel>
-            <StackPanel x:Name="stpHeader">
-                <Label x:Name="lblUsername">Nincs bejelentkezve</Label>
-                <Label x:Name="lblBalance"></Label>
-                <Button x:Name="btnLogin" Click="Button_Click">
+            <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#3b5998">
+                <Label x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
+                <Label x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
+                <Button x:Name="btnLogin" Click="Button_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Login
                 </Button>
-                <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5">
+                <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5" Background="#f44336" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Logout
                 </Button>
-                <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2">
+                <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Pénz Feltöltés (Debug)
                 </Button>
-                <Button Visibility="Collapsed" x:Name="btnRealTopup" Click="Button_Click_4">
+                <Button Visibility="Collapsed" x:Name="btnRealTopup" Click="Button_Click_4" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Pénz Feltöltés (Real, Trust)
                 </Button>
-                <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3">
+                <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3" Background="#2196F3" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Fogadás
                 </Button>
-                <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed">
+                <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Organiser Panel
                 </Button>
-                <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed">
+                <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Admin Panel
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="stpOngoingBets">
+            <StackPanel x:Name="stpOngoingBets" Margin="10">
 
             </StackPanel>
-            <Grid x:Name="grdCurrentEvents">
+            <Grid x:Name="grdCurrentEvents" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="stpEvents">
+                <StackPanel x:Name="stpEvents" Grid.ColumnSpan="2">
 
                 </StackPanel>
             </Grid>

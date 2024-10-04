@@ -80,7 +80,14 @@ namespace SportFogadas
             int balance = Convert.ToInt32(command.ExecuteScalar());
             connection.Close();
             lblEgyneleg.Content = $"Egyenleg: {balance}";
-            return balance >= betAmount;
+            if (balance != 0)
+            {
+                return balance >= betAmount;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private void SaveBetToDatabase(DateTime betDate, float odds, int amount, int bettorsId, int eventId, bool status)
