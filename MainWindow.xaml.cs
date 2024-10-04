@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Google.Protobuf.WellKnownTypes;
 using MySql.Data.MySqlClient;
 
 namespace SportFogadas
@@ -62,9 +61,9 @@ namespace SportFogadas
 
             ReadEvents();
         }
+        #region Read Events From Database
         public void ReadEvents()
         {
-            #region Read Events From Database
             var eventReader = ReadDB("SELECT * FROM Events");
 
             while (eventReader.Read())
@@ -80,7 +79,7 @@ namespace SportFogadas
             }
             debugWindow.Write($"{events.Count} events read from database");
             eventReader.Close();
-            while(stpCurrentEvents.Children.Count != 0)
+            while (stpCurrentEvents.Children.Count != 0)
             {
                 stpCurrentEvents.Children.RemoveAt(0);
             }
@@ -89,11 +88,10 @@ namespace SportFogadas
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
                 stpCurrentEvents.Children.Add(new TextBlock() { Text = e.EventName });
             });
-
-            #endregion
         }
+        #endregion
 
-
+        #region Login Method
         public void Login()
         {
             LoginRegister loginRegister = new LoginRegister(debugWindow);
@@ -112,9 +110,10 @@ namespace SportFogadas
             {
                 loggedIn = false;
             }
-
         }
+        #endregion
 
+        #region Load Users own bets
         public void LoadUserBets()
         {
             var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
@@ -150,6 +149,7 @@ namespace SportFogadas
                     );
             }
         }
+        #endregion
 
         #region Database Functions
         public void Exec(string command)
@@ -194,6 +194,7 @@ namespace SportFogadas
         }
         #endregion
 
+        #region Debug Button clicks
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Login();
@@ -205,7 +206,7 @@ namespace SportFogadas
 
             organiserPanel.ShowDialog();
             ReadEvents();
-
         }
+        #endregion
     }
 }

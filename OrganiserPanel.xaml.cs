@@ -26,7 +26,7 @@ namespace SportFogadas
             InitializeComponent();
             this.debugWindow = debugWindow;
         }
-
+        #region egister Event Button Function
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
@@ -65,5 +65,6 @@ namespace SportFogadas
                 throw;
             }
         }
+        #endregion
     }
 }

@@ -33,7 +33,7 @@ namespace SportFogadas
         public string UserName { get; internal set; }
         public int UserId { get; internal set; }
 
-
+        #region Login Button Function
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string tempUserName = txbLoginUsername.Text;
@@ -81,8 +81,9 @@ namespace SportFogadas
                 }
             }
         }
+        #endregion
 
-
+        #region Register Button Function
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             UserName = txbRegisterUsername.Text;
@@ -127,7 +128,9 @@ namespace SportFogadas
                 }
             }
         }
+        #endregion
 
+        #region Password Hasher
         public string PasswordHasher(string passwordIn)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -153,7 +156,9 @@ namespace SportFogadas
             return sBuilder.ToString();
         }
         #endregion
+        #endregion
 
+        #region Switch Login Register Button Functions
         private void btnShowLogin_Click(object sender, RoutedEventArgs e)
         {
             stpLogin.Visibility = Visibility.Visible;
@@ -165,5 +170,6 @@ namespace SportFogadas
             stpLogin.Visibility = Visibility.Collapsed;
             stpRegister.Visibility = Visibility.Visible;
         }
+        #endregion
     }
 }
