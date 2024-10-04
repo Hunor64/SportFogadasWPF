@@ -34,7 +34,7 @@
                     Admin Panel
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="stpOngoingBets" Margin="10">
+            <StackPanel x:Name="stpOngoingBets" Margin="10" Visibility="Collapsed">
 
             </StackPanel>
             <Grid x:Name="grdCurrentEvents" Margin="10">

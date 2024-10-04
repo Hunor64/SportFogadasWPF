@@ -154,6 +154,7 @@ namespace SportFogadas
                 btnRealTopup.Visibility = Visibility.Visible;
                 btnLogin.Visibility = Visibility.Collapsed;
                 btnLogout.Visibility = Visibility.Visible;
+                stpOngoingBets.Visibility = Visibility.Visible;
             }
             else
             {
@@ -308,7 +309,6 @@ namespace SportFogadas
                 UseShellExecute = true
             });
         }
-        #endregion
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
@@ -321,6 +321,8 @@ namespace SportFogadas
             btnTopup.Visibility = Visibility.Collapsed;
             btnRealTopup.Visibility = Visibility.Collapsed;
             btnOrganiser.Visibility = Visibility.Collapsed;
+            btnAdmin.Visibility = Visibility.Collapsed;
+            stpOngoingBets.Visibility = Visibility.Collapsed;
             lblUsername.Content = "Nincs bejelentkezve";
             lblBalance.Content = "";
             stpOngoingBets.Children.Clear();
@@ -332,5 +334,6 @@ namespace SportFogadas
             adminPanel.ShowDialog();
 
         }
+        #endregion
     }
 }
