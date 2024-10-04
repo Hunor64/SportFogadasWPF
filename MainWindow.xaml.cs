@@ -44,7 +44,6 @@ namespace SportFogadas
             }
             #endregion
 
-
             #region Database Connection
             try
             {
@@ -64,11 +63,11 @@ namespace SportFogadas
         #region Read Events From Database
         public void ReadEvents()
         {
-            for (int i = 0; stpCurrentEvents.Children.Count != 0; i++)
+            for (int i = 0; stpEvents.Children.Count != 0; i++)
             {
-                debugWindow.Write(stpCurrentEvents.Children.Count.ToString());
-                debugWindow.Write($"Removing child {stpCurrentEvents.Children[0].ToString()}");
-                stpCurrentEvents.Children.Remove(stpCurrentEvents.Children[0]);
+                debugWindow.Write(stpEvents.Children.Count.ToString());
+                debugWindow.Write($"Removing child {stpEvents.Children[0].ToString()}");
+                stpEvents.Children.Remove(stpEvents.Children[0]);
             }
             events = new List<Events>();
             var eventReader = ReadDB("SELECT * FROM Events");
@@ -89,7 +88,26 @@ namespace SportFogadas
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
-                stpCurrentEvents.Children.Add(new TextBlock() { Text = e.EventName });
+                stpEvents.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = e.EventName
+                    });
+                stpEvents.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = e.Location
+                    });
+                stpEvents.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = e.Category
+                    });
+                stpEvents.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = e.EventDate.ToString()
+                    });
             });
         }
         #endregion

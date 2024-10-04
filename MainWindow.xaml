@@ -20,9 +20,15 @@
             <StackPanel x:Name="stpOngoingBets">
 
             </StackPanel>
-            <StackPanel x:Name="stpCurrentEvents">
+            <Grid x:Name="grdCurrentEvents">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="stpEvents">
 
-            </StackPanel>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
