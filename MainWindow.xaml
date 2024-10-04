@@ -9,13 +9,19 @@
     <Grid>
         <StackPanel>
             <StackPanel x:Name="stpHeader">
-                <Label x:Name="lblUsername"></Label>
+                <Label x:Name="lblUsername">Nincs bejelentkezve</Label>
                 <Label x:Name="lblBalance"></Label>
-                <Button Click="Button_Click">
+                <Button x:Name="btnLogin" Click="Button_Click">
                     Login
                 </Button>
+                <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5">
+                    Logout
+                </Button>
                 <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2">
-                    Feltöltés
+                    Pénz Feltöltés (Debug)
+                </Button>
+                <Button Visibility="Collapsed" x:Name="btnRealTopup" Click="Button_Click_4">
+                    Pénz Feltöltés (Real, Trust)
                 </Button>
                 <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3">
                     Fogadás

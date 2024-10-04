@@ -142,6 +142,9 @@ namespace SportFogadas
                 }
                 btnBet.Visibility = Visibility.Visible;
                 btnTopup.Visibility = Visibility.Visible;
+                btnRealTopup.Visibility = Visibility.Visible;
+                btnLogin.Visibility = Visibility.Collapsed;
+                btnLogout.Visibility = Visibility.Visible;
             }
             else
             {
@@ -287,6 +290,31 @@ namespace SportFogadas
                 LoadUserBets();
             }
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://fos.hu/1grj",
+                UseShellExecute = true
+            });
+        }
         #endregion
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            userName = "";
+            userID = -1;
+            userPrivilage = "guest";
+            btnLogout.Visibility = Visibility.Collapsed;
+            btnLogin.Visibility = Visibility.Visible;
+            btnBet.Visibility = Visibility.Collapsed;
+            btnTopup.Visibility = Visibility.Collapsed;
+            btnRealTopup.Visibility = Visibility.Collapsed;
+            btnOrganiser.Visibility = Visibility.Collapsed;
+            lblUsername.Content = "Nincs bejelentkezve";
+            lblBalance.Content = "";
+            stpOngoingBets.Children.Clear();
+        }
     }
 }
