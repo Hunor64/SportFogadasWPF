@@ -37,10 +37,10 @@ ALTER TABLE `Bets` ADD FOREIGN KEY (`BettorsID`) REFERENCES `Bettors` (`BettorsI
 ALTER TABLE `Bets` ADD FOREIGN KEY (`EventID`) REFERENCES `Events` (`EventID`);
 
 INSERT INTO `bettors` (`BettorsID`, `Username`, `Password`, `Balance`, `Email`, `JoinDate`, `IsActive`, `Privilage`) VALUES
-(1, 'john', '96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a', 1000, 'john@example.com', '2022-01-15', 1, 'user'),
-(2, 'jane', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1500, 'jane@example.com', '2022-02-20', 1, 'organiser'),
-(3, 'admin', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 5000, 'admin@example.com', '2021-12-01', 1, 'admin'),
-(4, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 0, 'a', '2024-10-03', 1, 'user');
+(1, 'john', 'b7fcc6e612145267d2ffea04be754a34128c1ed8133a09bfbbabd6afe6327688aa71d47343dd36e719f35f30fa79aec540e91b81c214fddfe0bedd53370df46d', 1000, 'john@example.com', '2022-01-15', 1, 'user'),
+(2, 'jane', '1769722a9dc2fd3ae675264e61a51bd7359eb1346aa2f096e68513e78e86f4c68bee853ef7db764fff7ce707ef367a6644e71511ca3f31e52a4cbc02a1091e3c', 1500, 'jane@example.com', '2022-02-20', 1, 'organiser'),
+(3, 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 5000, 'admin@example.com', '2021-12-01', 1, 'admin'),
+(4, 'a', '1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75', 0, 'a', '2024-10-03', 1, 'user');
 
 INSERT INTO `Events` (`EventName`, `EventDate`, `Category`, `Location`) VALUES
 ('Football Match', '2023-05-10', 'Sports', 'Stadium A'),
