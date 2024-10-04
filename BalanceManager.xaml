@@ -17,7 +17,7 @@
         </StackPanel>
         <StackPanel Visibility="Collapsed" x:Name="stpDeLoadBalance">
             <Label x:Name="lblWithdrawlBalance">Egyenleg:</Label>
-            <Label>Kivétel összeg:</Label>
+            <Label>Kifizetés összeg:</Label>
             <TextBox x:Name="txtWithdrawl"></TextBox>
             <Label>Bank számla szám:</Label>
             <TextBox x:Name="txtBankNumber"></TextBox>

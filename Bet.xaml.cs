@@ -23,7 +23,9 @@ namespace SportFogadas
             this.userID = userID;
             this.debugWindow = debugWindow;
             connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
+            CheckBalance(0);
             LoadEvents();
+
         }
         #endregion
 
@@ -66,6 +68,7 @@ namespace SportFogadas
             float odds = 1.5f;
             SaveBetToDatabase(DateTime.Now, odds, betAmount, userID, eventId, true);
             UpdateBalance(betAmount);
+            CheckBalance(0);
         }
 
         private bool CheckBalance(int betAmount)
@@ -76,6 +79,7 @@ namespace SportFogadas
             command.Parameters.AddWithValue("@userID", userID);
             int balance = Convert.ToInt32(command.ExecuteScalar());
             connection.Close();
+            lblEgyneleg.Content = $"Egyenleg: {balance}";
             return balance >= betAmount;
         }
 

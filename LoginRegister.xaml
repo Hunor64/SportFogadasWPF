@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel x:Name="stpLogin">
             <Label>Username:</Label>
-            <TextBox x:Name="txbLoginUsername"></TextBox>
+            <TextBox KeyDown="pswLoginPassword_KeyDown" x:Name="txbLoginUsername"></TextBox>
             <Label>Password:</Label>
             <PasswordBox KeyDown="pswLoginPassword_KeyDown" x:Name="pswLoginPassword"></PasswordBox>
             <Button x:Name="btnLogin" Click="btnLogin_Click_1">Login</Button>

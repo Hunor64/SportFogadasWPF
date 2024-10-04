@@ -64,6 +64,8 @@ namespace SportFogadas
                 UpdateBalanceInDb();
                 lblWithdrawlBalance.Content = $"Egyenleg: {currentBalance}";
                 lblDepositBalance.Content = $"Egyenleg: {currentBalance}";
+                MessageBox.Show("Sikeres kifizetés!");
+                this.Close();
             }
             else
             {
@@ -80,6 +82,8 @@ namespace SportFogadas
                 UpdateBalanceInDb();
                 lblWithdrawlBalance.Content = $"Egyenleg: {currentBalance}";
                 lblDepositBalance.Content = $"Egyenleg: {currentBalance}";
+                MessageBox.Show("Sikeres feltöltés!");
+                this.Close();
             }
             else
             {
@@ -102,6 +106,7 @@ namespace SportFogadas
 
                     connection.Open();
                     command.ExecuteNonQuery();
+
                 }
             }
             catch (MySqlException sqlEx)
