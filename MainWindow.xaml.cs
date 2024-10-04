@@ -248,6 +248,17 @@ namespace SportFogadas
             organiserPanel.ShowDialog();
             ReadEvents();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (userID != -1)
+            {
+
+                BalanceManager balanceManager = new BalanceManager(userID, debugWindow);
+                balanceManager.ShowDialog();
+                LoadUserBets();
+            }
+        }
         #endregion
     }
 }

@@ -18,6 +18,9 @@
                 <Button Click="Button_Click_1">
                     Organiser Panel
                 </Button>
+                <Button Click="Button_Click_2">
+                    Feltöltés
+                </Button>
             </StackPanel>
             <StackPanel x:Name="stpOngoingBets">
 
