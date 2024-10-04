@@ -24,6 +24,7 @@ namespace SportFogadas
                 txtDebug.Dispatcher.Invoke(() =>
                 {
                     txtDebug.AppendText(message + Environment.NewLine);
+                    scvScroller.ScrollToBottom();
                 });
             }
         }

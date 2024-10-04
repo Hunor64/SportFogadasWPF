@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="DebugWindow" Height="450" Width="800">
     <Grid>
-        <TextBox Name="txtDebug" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap"/>
+        <ScrollViewer x:Name="scvScroller" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <TextBox Name="txtDebug" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap"/>
+        </ScrollViewer>
     </Grid>
 </Window>
