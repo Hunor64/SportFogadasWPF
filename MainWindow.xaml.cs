@@ -138,7 +138,16 @@ namespace SportFogadas
                 }
                 else
                 {
-                    btnOrganiser.Visibility = Visibility.Hidden;
+                    btnOrganiser.Visibility = Visibility.Collapsed;
+                }
+                if (userPrivilage == "admin")
+                {
+                    btnAdmin.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+                    btnAdmin.Visibility = Visibility.Collapsed;
                 }
                 btnBet.Visibility = Visibility.Visible;
                 btnTopup.Visibility = Visibility.Visible;
@@ -315,6 +324,13 @@ namespace SportFogadas
             lblUsername.Content = "Nincs bejelentkezve";
             lblBalance.Content = "";
             stpOngoingBets.Children.Clear();
+        }
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            AdminPanel adminPanel = new AdminPanel(debugWindow);
+            adminPanel.ShowDialog();
+
         }
     }
 }

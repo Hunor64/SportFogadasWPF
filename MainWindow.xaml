@@ -29,6 +29,9 @@
                 <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed">
                     Organiser Panel
                 </Button>
+                <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed">
+                    Admin Panel
+                </Button>
             </StackPanel>
             <StackPanel x:Name="stpOngoingBets">
 
