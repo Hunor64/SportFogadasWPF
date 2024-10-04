@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="BalanceManager" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Visibility="Visible" x:Name="stpLoadBalance">
+            <Label x:Name="lblDepositBalance"></Label>
+            <Label>feltöltendő összeg:</Label>
+            <TextBox x:Name="txtDeposit"></TextBox>
+            <Button x:Name="btnDeposit" Click="btnDeposit_Click">Feltöltés</Button>
+        </StackPanel>
+        <StackPanel Visibility="Collapsed" x:Name="stpDeLoadBalance">
+            <Label x:Name="lblWithdrawlBalance"></Label>
+            <Label>Kivétel összeg:</Label>
+            <TextBox x:Name="txtWithdrawl"></TextBox>
+            <Label>Bank számla szám:</Label>
+            <TextBox x:Name="txtBankNumber"></TextBox>
+            <Button x:Name="btnWithdraw" Click="btnDeposit_Click">Utalás</Button>
+        </StackPanel>
     </Grid>
 </Window>
