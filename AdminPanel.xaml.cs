@@ -62,9 +62,9 @@ namespace SportFogadas
         #region Password Hasher
         public string PasswordHasher(string passwordIn)
         {
-            using (SHA256 sha256Hash = SHA256.Create())
+            using (SHA512 sha512Hash = SHA512.Create())
             {
-                return GetHash(sha256Hash, passwordIn);
+                return GetHash(sha512Hash, passwordIn);
             }
         }
         #region Microsoft Hash Code
