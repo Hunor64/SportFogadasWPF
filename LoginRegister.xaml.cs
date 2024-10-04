@@ -36,7 +36,7 @@ namespace SportFogadas
         #endregion
 
         #region Login Button Function
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click()
         {
             string tempUserName = txbLoginUsername.Text;
             string password = pswLoginPassword.Password;
@@ -88,7 +88,7 @@ namespace SportFogadas
         #endregion
 
         #region Register Button Function
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        private void btnRegister_Click()
         {
             UserName = txbRegisterUsername.Text;
             string password = pswRegisterPassword.Password;
@@ -224,5 +224,31 @@ namespace SportFogadas
             stpRegister.Visibility = Visibility.Visible;
         }
         #endregion
+
+        private void pswRegisterPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnRegister_Click();
+            }
+        }
+
+        private void pswLoginPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLogin_Click();
+            }
+        }
+
+        private void btnRegister_Click_1(object sender, RoutedEventArgs e)
+        {
+            btnRegister_Click();
+        }
+
+        private void btnLogin_Click_1(object sender, RoutedEventArgs e)
+        {
+            btnLogin_Click();
+        }
     }
 }

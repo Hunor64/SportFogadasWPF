@@ -185,7 +185,7 @@ namespace SportFogadas
                     (
                     new TextBlock()
                     {
-                        Text = $"{bet.BetID},{bet.BettorsID},{bet.EventID},{bet.Amount},{bet.BetDate},{bet.Odds},{bet.Status}"
+                        Text = $"Bet ID: {bet.BetID}, Event: {events.First(x=>x.EventID == bet.EventID).EventName}, Amount: {bet.Amount}, Date: {bet.BetDate}, Odds: {bet.Odds}, Finised: {bet.Status}"
                     }
                     );
             }
