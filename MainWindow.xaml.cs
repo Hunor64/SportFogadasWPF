@@ -29,6 +29,8 @@ namespace SportFogadas
         List<UserBets> bets = new List<UserBets>();
         string userName = "";
         int userID = -1;
+        string userPrivilage = "guest";
+
 
         bool loggedIn = false;
         #endregion
@@ -125,10 +127,21 @@ namespace SportFogadas
             {
                 userName = loginRegister.UserName;
                 userID = loginRegister.UserId;
+                userPrivilage = loginRegister.Privilage;
                 loggedIn = true;
                 debugWindow.Write(userName);
                 debugWindow.Write(userID.ToString());
                 LoadUserBets();
+                if (userPrivilage == "organiser")
+                {
+                    btnOrganiser.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnOrganiser.Visibility = Visibility.Hidden;
+                }
+                btnBet.Visibility = Visibility.Visible;
+                btnTopup.Visibility = Visibility.Visible;
             }
             else
             {
@@ -185,7 +198,7 @@ namespace SportFogadas
                     (
                     new TextBlock()
                     {
-                        Text = $"Bet ID: {bet.BetID}, Event: {events.First(x=>x.EventID == bet.EventID).EventName}, Amount: {bet.Amount}, Date: {bet.BetDate}, Odds: {bet.Odds}, Finised: {bet.Status}"
+                        Text = $"Bet ID: {bet.BetID}, Event: {events.First(x => x.EventID == bet.EventID).EventName}, Amount: {bet.Amount}, Date: {bet.BetDate}, Odds: {bet.Odds}, Finised: {bet.Status}"
                     }
                     );
             }
@@ -243,17 +256,22 @@ namespace SportFogadas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            OrganiserPanel organiserPanel = new OrganiserPanel(debugWindow);
-
-            organiserPanel.ShowDialog();
-            ReadEvents();
+            if (userPrivilage == "organiser")
+            {
+                OrganiserPanel organiserPanel = new OrganiserPanel(debugWindow);
+                organiserPanel.ShowDialog();
+                ReadEvents();
+            }
+            else
+            {
+                MessageBox.Show("You do not have the required privilages to access this feature.");
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             if (userID != -1)
             {
-
                 BalanceManager balanceManager = new BalanceManager(userID, debugWindow);
                 balanceManager.ShowDialog();
                 LoadUserBets();
@@ -264,7 +282,7 @@ namespace SportFogadas
         {
             if (userID != -1)
             {
-                Bet betWindow  = new Bet(userID, debugWindow);
+                Bet betWindow = new Bet(userID, debugWindow);
                 betWindow.ShowDialog();
                 LoadUserBets();
             }

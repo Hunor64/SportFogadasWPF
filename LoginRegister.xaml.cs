@@ -33,6 +33,7 @@ namespace SportFogadas
 
         public string UserName { get; internal set; }
         public int UserId { get; internal set; }
+        public string Privilage { get; internal set; }
         #endregion
 
         #region Login Button Function
@@ -65,6 +66,7 @@ namespace SportFogadas
                             {
                                 UserName = tempUserName;
                                 UserId = reader.GetInt32("BettorsID");
+                                Privilage = reader.GetString("Privilage");
                                 MessageBox.Show("Login successful!");
                                 this.DialogResult = true;
                                 connection.Close();
@@ -116,6 +118,8 @@ namespace SportFogadas
                                 debugWindow.Write("User registered successfully!");
                                 MessageBox.Show("User registered successfully!");
                                 this.DialogResult = true;
+                                UserId = (int)command.LastInsertedId;
+                                Privilage = "user";
                                 connection.Close();
                                 this.Close();
                             }
