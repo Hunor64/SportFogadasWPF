@@ -148,6 +148,9 @@ namespace SportFogadas
                 stpOngoingBets.Children.Remove(stpOngoingBets.Children[0]);
             }
             bets = new List<UserBets>();
+
+            lblUsername.Content = userName;
+
             var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
             while (betReader.Read())
             {
@@ -164,8 +167,14 @@ namespace SportFogadas
 
             }
             betReader.Close();
-
             debugWindow.Write($"{bets.Count} bets read from database");
+
+            var userReader = ReadDB($"SELECT * FROM Bettors WHERE BettorsID = {userID}");
+            userReader.Read();
+            lblBalance.Content = $"Egyenleg: {userReader.GetInt32("Balance")}";
+            userReader.Close();
+            debugWindow.Write($"Balance read from database");
+
 
             var stack = stpOngoingBets;
             foreach (var bet in bets)

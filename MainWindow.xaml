@@ -10,6 +10,8 @@
         <StackPanel>
 
             <StackPanel x:Name="stpHeader">
+                <Label x:Name="lblUsername"></Label>
+                <Label x:Name="lblBalance"></Label>
                 <Button Click="Button_Click">
                     Login
                 </Button>
