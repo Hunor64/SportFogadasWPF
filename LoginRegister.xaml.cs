@@ -45,6 +45,7 @@ namespace SportFogadas
             string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                debugWindow.Write("Searching for user");
                 string query = "SELECT * FROM Bettors WHERE Username = @Username";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -58,7 +59,6 @@ namespace SportFogadas
                             reader.Read();
 
                             string dbPassword = reader.GetString("Password");
-                            debugWindow.Write(dbPassword);
                             debugWindow.Write(PasswordHasher(password));
                             debugWindow.Write((PasswordHasher(password) == dbPassword).ToString());
                             if (PasswordHasher(password) == dbPassword)
@@ -72,11 +72,13 @@ namespace SportFogadas
                             }
                             else
                             {
+                                debugWindow.Write("Password mismatch!");
                                 MessageBox.Show("Incorrect password!");
                             }
                         }
                         else
                         {
+                            debugWindow.Write("No user found!");
                             MessageBox.Show("User does not exist!");
                         }
                     }
@@ -92,43 +94,92 @@ namespace SportFogadas
             string password = pswRegisterPassword.Password;
             string email = txbRegisterEmail.Text;
 
-            string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            if (UserName.Length >= 5 && password.Length > 5 && HasNumber(password) && HasSpecialChar(password) && email.Contains('.') && email.Contains('@'))
             {
-                try
+                string connectionString = "Server=localhost;Database=Bets;Uid=root;Pwd=;";
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate) VALUES (@Username, @Password, @Email, @JoinDate)";
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    try
                     {
-                        command.Parameters.AddWithValue("@Username", UserName);
-                        command.Parameters.AddWithValue("@Password", PasswordHasher(password));
-                        debugWindow.Write(PasswordHasher(password));
-                        command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
-                        connection.Open();
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
+                        string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate) VALUES (@Username, @Password, @Email, @JoinDate)";
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
                         {
-                            debugWindow.Write("User registered successfully!");
-                            MessageBox.Show("User registered successfully!");
-                            this.DialogResult = true;
-                            connection.Close();
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to register user!");
+                            command.Parameters.AddWithValue("@Username", UserName);
+                            command.Parameters.AddWithValue("@Password", PasswordHasher(password));
+                            debugWindow.Write(PasswordHasher(password));
+                            command.Parameters.AddWithValue("@Email", email);
+                            command.Parameters.AddWithValue("@JoinDate", DateTime.Now);
+                            connection.Open();
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                debugWindow.Write("User registered successfully!");
+                                MessageBox.Show("User registered successfully!");
+                                this.DialogResult = true;
+                                connection.Close();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to register user!");
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to register user!");
-                    debugWindow.Write("Failed to register user!");
-                    debugWindow.Write(ex.ToString());
-                    throw;
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to register user!");
+                        debugWindow.Write("Failed to register user!");
+                        debugWindow.Write(ex.ToString());
+                        throw;
+                    }
                 }
             }
+            else
+            {
+                if (!(UserName.Length >= 5))
+                {
+                    debugWindow.Write("Username must be longer than 5 characters!");
+                    debugWindow.Write(UserName);
+                    MessageBox.Show("Username must be longer than 5 characters!");
+                }
+                else if (!(password.Length > 5))
+                {
+                    debugWindow.Write("Password must be longer than 5 characters!");
+                    debugWindow.Write(password);
+                    MessageBox.Show("Password must be longer than 5 characters!");
+                }
+                else if (!HasNumber(password))
+                {
+                    debugWindow.Write("Password must contain a number!");
+                    debugWindow.Write(password);
+                    MessageBox.Show("Password must contain a number!");
+                }
+                else if (!HasSpecialChar(password))
+                {
+                    debugWindow.Write("Password must contain a special character!");
+                    debugWindow.Write(password);
+                    MessageBox.Show("Password must contain a special character!");
+                }
+                else
+                {
+
+                    debugWindow.Write("Invalid email address!");
+                    debugWindow.Write(email);
+                    debugWindow.Write($"Email contains a dot: {email.Contains('.').ToString()}");
+                    debugWindow.Write($"Email contains an at: {email.Contains('@').ToString()}");
+                    MessageBox.Show("Invalid email address!");
+                }
+            }
+        }
+
+        private bool HasNumber(string input)
+        {
+            return input.Any(char.IsDigit);
+        }
+
+        private bool HasSpecialChar(string input)
+        {
+            return input.Any(ch => !char.IsLetterOrDigit(ch));
         }
         #endregion
 

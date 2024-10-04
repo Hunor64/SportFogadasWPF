@@ -115,8 +115,11 @@ namespace SportFogadas
         #region Login Method
         public void Login()
         {
+            debugWindow.Write("Login method called");
             LoginRegister loginRegister = new LoginRegister(debugWindow);
+            debugWindow.Write("LoginRegister window opened");
             loginRegister.ShowDialog();
+            debugWindow.Write("LoginRegister window closed");
 
             if (loginRegister.DialogResult.HasValue && loginRegister.DialogResult.Value)
             {
@@ -130,6 +133,7 @@ namespace SportFogadas
             else
             {
                 loggedIn = false;
+                debugWindow.Write("No user logged in");
             }
         }
         #endregion
@@ -137,6 +141,13 @@ namespace SportFogadas
         #region Load Users own bets
         public void LoadUserBets()
         {
+            for (int i = 0; stpOngoingBets.Children.Count != 0; i++)
+            {
+                debugWindow.Write(stpOngoingBets.Children.Count.ToString());
+                debugWindow.Write($"Removing child {stpOngoingBets.Children[0].ToString()}");
+                stpOngoingBets.Children.Remove(stpOngoingBets.Children[0]);
+            }
+            bets = new List<UserBets>();
             var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
             while (betReader.Read())
             {
