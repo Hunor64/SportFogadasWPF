@@ -33,9 +33,9 @@ ALTER TABLE `Bets` ADD FOREIGN KEY (`EventID`) REFERENCES `Events` (`EventID`);
 
 INSERT INTO `bettors` (`BettorsID`, `Username`, `Password`, `Balance`, `Email`, `JoinDate`, `IsActive`, `Privilage`) VALUES
 (1, 'john_doe', '96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a', 1000, 'john@example.com', '2022-01-15', 1, 'user'),
-(2, 'jane_smith', '', 1500, 'jane@example.com', '2022-02-20', 1, 'organiser'),
-(3, 'admin_user', '', 5000, 'admin@example.com', '2021-12-01', 1, 'admin'),
-(10, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 0, 'a', '2024-10-03', 1, 'user');
+(2, 'jane_smith', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 1500, 'jane@example.com', '2022-02-20', 1, 'organiser'),
+(3, 'admin_user', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 5000, 'admin@example.com', '2021-12-01', 1, 'admin'),
+(4, 'a', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb', 0, 'a', '2024-10-03', 1, 'user');
 
 INSERT INTO `Events` (`EventName`, `EventDate`, `Category`, `Location`) VALUES
 ('Football Match', '2023-05-10', 'Sports', 'Stadium A'),
