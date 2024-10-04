@@ -1,17 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace SportFogadas
 {
@@ -20,36 +10,35 @@ namespace SportFogadas
     /// </summary>
     public partial class Bet : Window
     {
-        MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
-        DebugWindow debugWindow;
-        int bettorIDMain;
+        private int userID;
+        private DebugWindow debugWindow;
+        private MySqlConnection connection;
 
-        public Bet(int bettorId, DebugWindow debugWindow)
+        public Bet(int userID, DebugWindow debugWindow)
         {
-            bettorIDMain = bettorId;
-            this.debugWindow = debugWindow;
             InitializeComponent();
+            this.userID = userID;
+            this.debugWindow = debugWindow;
+            connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
             LoadEvents();
         }
 
         private void LoadEvents()
         {
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
-            {
-                connection.Open();
-                string query = "SELECT EventID, EventName FROM Events";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                MySqlDataReader reader = command.ExecuteReader();
+            connection.Open();
+            string query = "SELECT EventID, EventName FROM Events";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            MySqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
+            while (reader.Read())
+            {
+                EventComboBox.Items.Add(new ComboBoxItem
                 {
-                    EventComboBox.Items.Add(new ComboBoxItem
-                    {
-                        Content = reader["EventName"].ToString(),
-                        Tag = reader["EventID"]
-                    });
-                }
+                    Content = reader["EventName"].ToString(),
+                    Tag = reader["EventID"]
+                });
             }
+            connection.Close();
         }
 
         private void PlaceBetButton_Click(object sender, RoutedEventArgs e)
@@ -62,47 +51,55 @@ namespace SportFogadas
 
             int eventId = (int)((ComboBoxItem)EventComboBox.SelectedItem).Tag;
             int betAmount = int.Parse(BetAmountTextBox.Text);
-            int bettorId = bettorIDMain; 
-            float odds = 1.5f; 
 
-            SaveBetToDatabase(DateTime.Now, odds, betAmount, bettorId, eventId, true);
-            this.Close();
+            if (!CheckBalance(betAmount))
+            {
+                MessageBox.Show("Insufficient balance.");
+                return;
+            }
+
+            float odds = 1.5f; // Example odds, replace with actual logic
+            SaveBetToDatabase(DateTime.Now, odds, betAmount, userID, eventId, true);
+            UpdateBalance(betAmount);
+        }
+
+        private bool CheckBalance(int betAmount)
+        {
+            connection.Open();
+            string query = "SELECT Balance FROM Bettors WHERE BettorsID = @userID";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@userID", userID);
+            int balance = Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+            return balance >= betAmount;
         }
 
         private void SaveBetToDatabase(DateTime betDate, float odds, int amount, int bettorsId, int eventId, bool status)
         {
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
-            {
-                connection.Open();
-                MySqlTransaction transaction = connection.BeginTransaction();
+            connection.Open();
+            string query = "INSERT INTO Bets (BetDate, Odds, Amount, BettorsID, EventID, Status) VALUES (@BetDate, @Odds, @Amount, @BettorsID, @EventID, @Status)";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@BetDate", betDate);
+            command.Parameters.AddWithValue("@Odds", odds);
+            command.Parameters.AddWithValue("@Amount", amount);
+            command.Parameters.AddWithValue("@BettorsID", bettorsId);
+            command.Parameters.AddWithValue("@EventID", eventId);
+            command.Parameters.AddWithValue("@Status", status);
 
-                try
-                {
-                    string query = "INSERT INTO Bets (BetDate, Odds, Amount, BettorsID, EventID, Status) VALUES (@BetDate, @Odds, @Amount, @BettorsID, @EventID, @Status)";
-                    MySqlCommand command = new MySqlCommand(query, connection, transaction);
-                    command.Parameters.AddWithValue("@BetDate", betDate);
-                    command.Parameters.AddWithValue("@Odds", odds);
-                    command.Parameters.AddWithValue("@Amount", amount);
-                    command.Parameters.AddWithValue("@BettorsID", bettorsId);
-                    command.Parameters.AddWithValue("@EventID", eventId);
-                    command.Parameters.AddWithValue("@Status", status);
-                    command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
+            connection.Close();
+            MessageBox.Show("Bet placed successfully!");
+        }
 
-                    string updateBalanceQuery = "UPDATE Bettors SET Balance = Balance - @Amount WHERE BettorID = @BettorsID";
-                    MySqlCommand updateBalanceCommand = new MySqlCommand(updateBalanceQuery, connection, transaction);
-                    updateBalanceCommand.Parameters.AddWithValue("@Amount", amount);
-                    updateBalanceCommand.Parameters.AddWithValue("@BettorsID", bettorsId);
-                    updateBalanceCommand.ExecuteNonQuery();
-
-                    transaction.Commit();
-                    MessageBox.Show("Bet placed successfully!");
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
+        private void UpdateBalance(int betAmount)
+        {
+            connection.Open();
+            string query = "UPDATE Bettors SET Balance = Balance - @betAmount WHERE BettorsID = @userID";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@betAmount", betAmount);
+            command.Parameters.AddWithValue("@userID", userID);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
