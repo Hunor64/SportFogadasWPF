@@ -9,14 +9,14 @@
         Background="#f0f0f0">
     <Grid>
         <StackPanel>
-            <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#3b5998">
-                <Label x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
-                <Label x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
+            <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#65558f">
+                <Label Style="{StaticResource LabelStyle}" x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
+                <Label Style="{StaticResource LabelStyle}" x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
                 <Button x:Name="btnLogin" Click="Button_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Bejelentkezés
                 </Button>
                 <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5" Background="#f44336" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Ki jelentkezés
+                    Kijelentkezés
                 </Button>
                 <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Pénz Feltöltés (Debug)
