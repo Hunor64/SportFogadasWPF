@@ -10,8 +10,8 @@
     <Grid>
         <StackPanel>
             <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#65558f">
-                <Label Style="{StaticResource LabelStyle}" x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
-                <Label Style="{StaticResource LabelStyle}" x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
+                <Label Style="{StaticResource LabelStyle}" x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
+                <Label Style="{StaticResource LabelStyle}" x:Name="lblBalance" Foreground="White"  FontSize="16" Margin="0,0,10,0"></Label>
                 <Button x:Name="btnLogin" Click="Button_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Bejelentkezés
                 </Button>
