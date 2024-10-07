@@ -8,14 +8,14 @@
         Title="Admin Ablak" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Label>Felhasználónév:</Label>
-            <TextBox x:Name="txtUsername"/>
-            <Label>Jelszó:</Label>
-            <PasswordBox x:Name="pwdPassword"/>
-            <Label>Email:</Label>
-            <TextBox x:Name="txtEmail"/>
-            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click"/>
-            <Button Content="Felhasználó változtatása" Click="EditUser_Click"/>
+            <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
+            <TextBox x:Name="txtUsername"  Style="{StaticResource TextBoxStyle}"/>
+            <Label  Style="{StaticResource LabelStyle}">Jelszó:</Label>
+            <PasswordBox x:Name="pwdPassword" Style="{StaticResource PasswordBoxStyle}"/>
+            <Label  Style="{StaticResource LabelStyle}">Email:</Label>
+            <TextBox x:Name="txtEmail" Style="{StaticResource TextBoxStyle}"/>
+            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

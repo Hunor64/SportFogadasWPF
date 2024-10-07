@@ -258,6 +258,42 @@ namespace SportFogadas
         {
             btnLogin_Click();
         }
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.Password = ""; // Clear PasswordBox password
+            }
+            else if (sender is TextBox textBox)
+            {
+                textBox.Text = ""; // Clear TextBox text
+            }
+            
+        }
+
+        private void btn_Login_Password_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pswLoginPassword, null);
+        }
+        private void btn_Login_Textbox_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbLoginUsername, null);
+        }
+        private void btn_Register_Password_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pswRegisterPassword, null);
+        }
+        private void btn_Register_Textbox_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbRegisterUsername, null);
+        }
+        private void btn_Register_Email_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbRegisterEmail, null);
+        }
+
+
         #endregion
     }
 }
