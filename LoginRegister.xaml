@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Bejelentkezés és Regisztráció Ablak" Height="450" Width="300">
+        Title="Bejelentkezés Ablak" x:Name="mainwindow" Height="450" Width="300">
     <Grid>
         <StackPanel x:Name="stpLogin">
             <Label>Felhasználónév:</Label>
