@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="LoginRegister" Height="450" Width="300">
+        Title="Bejelentkezés és Regisztráció Ablak" Height="450" Width="300">
     <Grid>
         <StackPanel x:Name="stpLogin">
-            <Label>Username:</Label>
+            <Label>Felhasználónév:</Label>
             <TextBox KeyDown="pswLoginPassword_KeyDown" x:Name="txbLoginUsername"></TextBox>
-            <Label>Password:</Label>
+            <Label>Jelszó:</Label>
             <PasswordBox KeyDown="pswLoginPassword_KeyDown" x:Name="pswLoginPassword"></PasswordBox>
-            <Button x:Name="btnLogin" Click="btnLogin_Click_1">Login</Button>
-            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Register</Button>
+            <Button x:Name="btnLogin" Click="btnLogin_Click_1">Bejelentkezés</Button>
+            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Registrálás</Button>
         </StackPanel>
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
-            <Label>Username:</Label>
+            <Label>Felhasznlónév:</Label>
             <TextBox x:Name="txbRegisterUsername"></TextBox>
             <Label>Email</Label>
             <TextBox x:Name="txbRegisterEmail"></TextBox>
-            <Label>Password:</Label>
+            <Label>Jelszó:</Label>
             <PasswordBox x:Name="pswRegisterPassword" KeyDown="pswRegisterPassword_KeyDown"></PasswordBox>
-            <Button x:Name="btnRegister" Click="btnRegister_Click_1">Register</Button>
-            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click">Login</Button>
+            <Button x:Name="btnRegister" Click="btnRegister_Click_1">Regisztrálás</Button>
+            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click">Bejelentkezés</Button>
         </StackPanel>
         
     </Grid>

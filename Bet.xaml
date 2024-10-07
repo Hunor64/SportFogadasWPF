@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Bet" Height="450" Width="300">
+        Title="Fogadás Ablak" Height="450" Width="300">
     <Grid>
         <StackPanel>
             <Label x:Name="lblEgyneleg">Egyenleg:</Label>
             <ComboBox x:Name="EventComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
             <TextBox x:Name="BetAmountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-            <Button Content="Place Bet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="PlaceBetButton_Click"/>
+            <Button Content="Tét véglegesítése" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="PlaceBetButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

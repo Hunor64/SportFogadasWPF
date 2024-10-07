@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="450" Width="800">
+        Title="Admin Ablak" Height="450" Width="800">
     <Grid>
         <StackPanel>
             <Label>Felhasználónév:</Label>
@@ -14,8 +14,8 @@
             <PasswordBox x:Name="pwdPassword"/>
             <Label>Email:</Label>
             <TextBox x:Name="txtEmail"/>
-            <Button Content="Add User" Click="AddUser_Click"/>
-            <Button Content="Edit User" Click="EditUser_Click"/>
+            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click"/>
+            <Button Content="Felhasználó változtatása" Click="EditUser_Click"/>
         </StackPanel>
     </Grid>
 </Window>
