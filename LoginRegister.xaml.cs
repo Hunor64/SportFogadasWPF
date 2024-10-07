@@ -125,6 +125,7 @@ namespace SportFogadas
                             }
                             else
                             {
+                                UserName = "";
                                 MessageBox.Show("Failed to register user!");
                             }
                         }
