@@ -221,12 +221,14 @@ namespace SportFogadas
         {
             stpLogin.Visibility = Visibility.Visible;
             stpRegister.Visibility = Visibility.Collapsed;
+            mainwindow.Title = "Bejelentkezés Ablak";
         }
 
         private void btnShowRegister_Click(object sender, RoutedEventArgs e)
         {
             stpLogin.Visibility = Visibility.Collapsed;
             stpRegister.Visibility = Visibility.Visible;
+            mainwindow.Title = "Regisztráció Ablak";
         }
         #endregion
 
