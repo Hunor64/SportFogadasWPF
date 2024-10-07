@@ -13,7 +13,7 @@
             <Label>Jelszó:</Label>
             <PasswordBox KeyDown="pswLoginPassword_KeyDown" x:Name="pswLoginPassword"></PasswordBox>
             <Button x:Name="btnLogin" Click="btnLogin_Click_1">Bejelentkezés</Button>
-            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Registrálás</Button>
+            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Regisztrálás</Button>
         </StackPanel>
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
             <Label>Felhasznlónév:</Label>

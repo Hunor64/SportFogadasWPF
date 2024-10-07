@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="OrganiserPanel" Height="450" Width="800">
+        Title="Rendező Ablak" Height="450" Width="800">
     <Grid>
         <StackPanel>
-            <Label>Event Name:</Label>
+            <Label>Esemény neve:</Label>
             <TextBox x:Name="txbEventName"></TextBox>
             <DatePicker x:Name="dtpEventDate"></DatePicker>
-            <Label>Category</Label>
+            <Label>Kategória</Label>
             <TextBox x:Name="txbCategory"></TextBox>
-            <Label>Location</Label>
+            <Label>Helyszín</Label>
             <TextBox x:Name="txbLocation"></TextBox>
-            <Button Click="Button_Click">Create</Button>
+            <Button Click="Button_Click">Hozzáadás</Button>
         </StackPanel>
     </Grid>
 </Window>

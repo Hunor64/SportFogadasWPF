@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Fő Ablak" Height="450" Width="800"
         Background="#f0f0f0">
     <Grid>
         <StackPanel>
@@ -13,10 +13,10 @@
                 <Label x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
                 <Label x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
                 <Button x:Name="btnLogin" Click="Button_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Login
+                    Bejelentkezés
                 </Button>
                 <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5" Background="#f44336" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Logout
+                    Ki jelentkezés
                 </Button>
                 <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
                     Pénz Feltöltés (Debug)
@@ -28,10 +28,10 @@
                     Fogadás
                 </Button>
                 <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Organiser Panel
+                    Rendező Oldal
                 </Button>
                 <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Admin Panel
+                    Admin Oldal
                 </Button>
             </StackPanel>
             <StackPanel x:Name="stpOngoingBets" Margin="10" Visibility="Collapsed">
