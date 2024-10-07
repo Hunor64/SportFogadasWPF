@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Rendező Ablak" Height="450" Width="800">
+        Title="Rendező Ablak" Height="450" Width="400">
     <Grid>
         <StackPanel>
             <Label>Esemény neve:</Label>
             <TextBox x:Name="txbEventName"></TextBox>
-            <DatePicker x:Name="dtpEventDate"></DatePicker>
+            <DatePicker x:Name="dtpEventDate" Style="{DynamicResource DatePickerStyle}"></DatePicker>
             <Label>Kategória</Label>
             <TextBox x:Name="txbCategory"></TextBox>
             <Label>Helyszín</Label>
