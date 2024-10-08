@@ -5,12 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Egyenleg Menedzser Ablak" Height="450" Width="300">
+        Title="Egyenleg Menedzser Ablak" Height="450" Width="300" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1">
     <Grid>
         <StackPanel Visibility="Visible" x:Name="stpLoadBalance">
-            <Label x:Name="lblDepositBalance"  Style="{StaticResource LabelStyle}">Egyenleg:</Label>
+            <Label x:Name="lblDepositBalance">Egyenleg:</Label>
             <Label Style="{StaticResource LabelStyle}">Feltöltendő összeg:</Label>
-            <TextBox x:Name="txtDeposit"  Style="{StaticResource TextBoxStyle}"></TextBox>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtDeposit" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="txtDeposit_button_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
             <Button x:Name="btnDeposit" Click="btnDeposit_Click" Style="{StaticResource ButtonStyle}">Feltöltés</Button>
             <Button x:Name="btnDepositSwitch" Click="btnDepositSwitch_Click" Style="{StaticResource ButtonStyle}">Kivétel</Button>
 
@@ -18,9 +26,26 @@
         <StackPanel Visibility="Collapsed" x:Name="stpDeLoadBalance">
             <Label x:Name="lblWithdrawlBalance">Egyenleg:</Label>
             <Label  Style="{StaticResource LabelStyle}">Kifizetés összeg:</Label>
-            <TextBox x:Name="txtWithdrawl" Style="{StaticResource TextBoxStyle}"></TextBox>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtWithdrawl" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="txtWithdrawl_button_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
             <Label  Style="{StaticResource LabelStyle}">Bank számla szám:</Label>
-            <TextBox x:Name="txtBankNumber" Style="{StaticResource TextBoxStyle}"></TextBox>
+            
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtBankNumber" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="txtBankNumber_button_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
             <Button x:Name="btnWithdraw" Click="btnWithdraw_Click" Style="{StaticResource ButtonStyle}">Utalás</Button>
             <Button x:Name="btnWithdrawSwitch" Click="btnWithdrawSwitch_Click" Style="{StaticResource ButtonStyle}">Feltöltés</Button>
         </StackPanel>

@@ -9,8 +9,16 @@
     <Grid>
         <StackPanel>
             <Label x:Name="lblEgyneleg" Style="{StaticResource LabelStyle}">Egyenleg:</Label>
-            <ComboBox x:Name="EventComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-            <TextBox x:Name="BetAmountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource TextBoxStyle}"/>
+            <ComboBox  x:Name="EventComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+           
+            <Grid Width="250" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBox Margin="5,5,0,5"  x:Name="BetAmountTextBox" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+                
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="btn_BET_Txt_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
             <Button Content="Tét véglegesítése" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Click="PlaceBetButton_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>

@@ -69,5 +69,27 @@ namespace SportFogadas
             }
         }
         #endregion
+
+        #region Other clicks
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;  
+                textBox.Text = "";
+           
+        }
+
+        private void txbEventName_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbEventName, null);
+        }
+        private void txbCategory_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbCategory, null);
+        }
+        private void txbLocation_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbLocation, null);
+        }
+        #endregion
     }
 }

@@ -11,9 +11,9 @@
             
             <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <!-- TextBox for Username -->
+                
                 <TextBox  x:Name="txbLoginUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
-                <!-- Clear button (X) -->
+               
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
                     Background="Transparent" BorderBrush="Transparent"  Click="btn_Login_Textbox_clear_Click">
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
@@ -22,9 +22,9 @@
 
             <Label Style="{StaticResource LabelStyle}">Jelszó:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,10">
-                <!-- Password -->
+               
                 <PasswordBox  x:Name="pswLoginPassword" Style="{StaticResource PasswordBoxStyle}" KeyDown="pswLoginPassword_KeyDown" BorderBrush="#D3D3D3" BorderThickness="1"/>
-                <!-- Clear button (X) -->
+                
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
                     Background="Transparent" BorderBrush="Transparent"  Click="btn_Login_Password_clear_Click" >
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
@@ -38,9 +38,9 @@
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
             <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <!-- TextBox for Username -->
+              
                 <TextBox  x:Name="txbRegisterUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
-                <!-- Clear button (X) -->
+                
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
                     Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Textbox_clear_Click">
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
@@ -48,9 +48,9 @@
             </Grid>
             <Label Style="{StaticResource LabelStyle}">Email</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <!-- TextBox for Username -->
+               
                 <TextBox  x:Name="txbRegisterEmail" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
-                <!-- Clear button (X) -->
+               
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
                     Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Email_clear_Click">
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
@@ -58,9 +58,9 @@
             </Grid>
             <Label Style="{StaticResource LabelStyle}">Jelszó:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,10">
-                <!-- Password -->
+                
                 <PasswordBox  x:Name="pswRegisterPassword"  Style="{StaticResource PasswordBoxStyle}" KeyDown="pswRegisterPassword_KeyDown" BorderBrush="#D3D3D3" BorderThickness="1"/>
-                <!-- Clear button (X) -->
+               
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
                     Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Password_clear_Click" >
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>

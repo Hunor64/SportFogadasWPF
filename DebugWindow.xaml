@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SportFogadas.DebugWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Debug Ablak" Height="450" Width="800">
+        Title="Debug Ablak" Height="450" Width="800" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1">
     <Grid>
         <ScrollViewer x:Name="scvScroller" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <TextBox Name="txtDebug" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsReadOnly="True" TextWrapping="Wrap"/>
