@@ -31,8 +31,8 @@
                                         HorizontalAlignment="Center" Width="300"
                                         Content="Választás naptárból"
                                         Background="#e6e0e9"
-                                        BorderBrush="Transparent"
-                                       />
+                                        BorderBrush="Transparent"/>
+                                
                                 <Popup x:Name="PART_Popup"
                                        AllowsTransparency="True"
                                        Placement="Bottom"
