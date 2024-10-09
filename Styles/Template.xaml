@@ -149,8 +149,9 @@
         <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Margin" Value="0,0,10,0"/>
+        <Setter Property="Margin" Value="10,0,10,0"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -162,4 +163,5 @@
         </Setter>
     </Style>
     <!--#endregion-->
+
 </ResourceDictionary>

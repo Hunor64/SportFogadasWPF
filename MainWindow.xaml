@@ -9,29 +9,49 @@
     <Grid>
         <StackPanel>
             <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#65558f">
-                <Label Style="{StaticResource LabelStyle}" x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
-                <Label Style="{StaticResource LabelStyle}" x:Name="lblBalance" Foreground="White"  FontSize="16" Margin="0,0,10,0"></Label>
-                <Button x:Name="btnLogin" Click="Button_Click" Style="{DynamicResource MainWButtonStyle}" >
-                    Bejelentkezés
-                </Button>
-                <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5" Style="{DynamicResource MainWButtonStyle}">
-                    Kijelentkezés
-                </Button>
-                <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2" Style="{DynamicResource MainWButtonStyle}" Background="#CF9893">
-                    Pénz Feltöltés (Debug)
-                </Button>
-                <Button Visibility="Collapsed" x:Name="btnRealTopup" Click="Button_Click_4" Style="{DynamicResource MainWButtonStyle}" Background="#CF9893">
-                    Pénz Feltöltés (Real, Trust)
-                </Button>
-                <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3" Style="{DynamicResource MainWButtonStyle}" Background="#A8B4A5">
-                    Fogadás
-                </Button>
-                <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed" Style="{DynamicResource MainWButtonStyle}" Background="#0C1618" Foreground="White">
-                    Rendező Oldal
-                </Button>
-                <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Style="{DynamicResource MainWButtonStyle}" Background="#0C1618" Foreground="White">
-                    Admin Oldal
-                </Button>
+               
+           
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnTopup" Visibility="Collapsed" Grid.Column="2" Grid.RowSpan="2" Click="Button_Click_2" Style="{DynamicResource MainWButtonStyle}" Background="#CF9893">
+                        Pénz Feltöltés (Debug)
+                    </Button>
+                    <Button Visibility="Collapsed" x:Name="btnRealTopup" Grid.Column="3" Grid.RowSpan="2" Click="Button_Click_4" Style="{DynamicResource MainWButtonStyle}" Background="#CF9893">
+                        Pénz Feltöltés (Real, Trust)
+                    </Button>
+                    <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3" Grid.RowSpan="2" Grid.Column="1" Style="{DynamicResource MainWButtonStyle}" Background="#A8B4A5">
+                        Fogadás
+                    </Button>
+                    <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed" Grid.RowSpan="2" Grid.Column="0" Style="{DynamicResource MainWButtonStyle}" Background="#0C1618" Foreground="White">
+                        Rendező Oldal
+                    </Button>
+                    <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Grid.RowSpan="2" Grid.Column="0" Style="{DynamicResource MainWButtonStyle}" Background="#0C1618" Foreground="White">
+                        Admin Oldal
+                    </Button>
+
+                    <Button x:Name="btnLogin" Grid.Column="4" Click="Button_Click" Grid.RowSpan="2" Style="{DynamicResource MainWButtonStyle}" >
+                        Bejelentkezés
+                    </Button>
+                    <Button Visibility="Collapsed" Grid.Column="4" x:Name="btnLogout" Grid.RowSpan="2" Click="Button_Click_5" Style="{DynamicResource MainWButtonStyle}">
+                        Kijelentkezés
+                    </Button>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="5" x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="5" x:Name="lblBalance" Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
+
+                </Grid>
+           
             </StackPanel>
             <StackPanel x:Name="stpOngoingBets" Margin="10" Visibility="Collapsed">
 
