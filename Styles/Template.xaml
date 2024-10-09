@@ -169,4 +169,10 @@
         
     </Style>
     <!--#endregion-->
+    
+    <!--#region BetStyle -->
+    <Style TargetType="StackPanel" x:Key="BetStyle">
+
+    </Style>
+    <!--#endregion-->
 </ResourceDictionary>
