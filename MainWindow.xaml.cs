@@ -87,30 +87,32 @@ namespace SportFogadas
             }
             debugWindow.Write($"{events.Count} events read from database");
             eventReader.Close();
+            var newEvent = new StackPanel();
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
-                stpEvents.Children.Add(
+                newEvent.Children.Add(
                     new TextBlock()
                     {
                         Text = e.EventName
                     });
-                stpEvents.Children.Add(
+                newEvent.Children.Add(
                     new TextBlock()
                     {
                         Text = e.Location
                     });
-                stpEvents.Children.Add(
+                newEvent.Children.Add(
                     new TextBlock()
                     {
                         Text = e.Category
                     });
-                stpEvents.Children.Add(
+                newEvent.Children.Add(
                     new TextBlock()
                     {
                         Text = e.EventDate.ToString()
                     });
             });
+            stpEvents.Children.Add(newEvent);
         }
         #endregion
 
