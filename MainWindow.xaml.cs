@@ -215,13 +215,42 @@ namespace SportFogadas
             {
                 debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
 
-                stack.Children.Add
-                    (
+                var loadedBet = new StackPanel();
+
+                loadedBet.Style = (Style)FindResource("BetStyle");
+
+                loadedBet.Children.Add(
                     new TextBlock()
                     {
-                        Text = $"Bet ID: {bet.BetID}, Event: {events.First(x => x.EventID == bet.EventID).EventName}, Amount: {bet.Amount}, Date: {bet.BetDate}, Odds: {bet.Odds}, Finised: {bet.Status}"
-                    }
-                    );
+                        Text = $"Bet ID: {bet.BetID}"
+                    });
+                loadedBet.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = $"Event: {events.First(x => x.EventID == bet.EventID).EventName}"
+                    });
+                loadedBet.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = $"Amount: {bet.Amount}"
+                    });
+                loadedBet.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = $"Date: {bet.BetDate}"
+                    });
+                loadedBet.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = $"Odds: {bet.Odds}"
+                    });
+                loadedBet.Children.Add(
+                    new TextBlock()
+                    {
+                        Text = $"Finised: {bet.Status}"
+                    });
+
+                stack.Children.Add(loadedBet);
             }
         }
         #endregion
