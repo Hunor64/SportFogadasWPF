@@ -21,6 +21,7 @@ namespace SportFogadas
     public partial class MainWindow : Window
     {
         public bool debugOn = false;
+        public bool trueGambling = false; //CSAK TRUE LEHET. SEMMI MÁS!!!!
 
         #region Initial Variables
         private DebugWindow debugWindow;
@@ -287,9 +288,16 @@ namespace SportFogadas
         }
         protected override void OnClosed(EventArgs e)
         {
-            // Open new window
-            KeepGambling keepGamblingWindow = new();
-            keepGamblingWindow.Show();
+            if (trueGambling)
+            {
+
+                KeepGambling keepGamblingWindow = new();
+                keepGamblingWindow.ShowDialog();
+
+                var newwin = new MainWindow();
+                newwin.Show();
+            }
+
             base.OnClosed(e);
             debugWindow.Close();
 

@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="KeepGambling" Height="340" Width="400">
+        Title="KeepGambling" Height="340" Width="400"
+        MinHeight="340" MinWidth="400"
+        MaxHeight="340" MaxWidth="400"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        >
     <Window.Background>
         <ImageBrush ImageSource="KEEP_GAMBLING.jpg"/>
     </Window.Background>

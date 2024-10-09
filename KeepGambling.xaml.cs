@@ -23,5 +23,13 @@ namespace SportFogadas
         {
             InitializeComponent();
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            MessageBox.Show("Csak a pénzed 100% veszítheted el, de akár a 10000%-át is visszanyerheted!");
+            MessageBox.Show("NE ADD FEL!");
+            base.OnClosed(e);
+            
+        }
     }
 }
