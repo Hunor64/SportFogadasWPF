@@ -166,7 +166,7 @@
     
     <!--#region EventStyle -->
     <Style TargetType="StackPanel" x:Key="EventStyle">
-        
+        <Setter Property="Background" Value="White"/>
     </Style>
     <!--#endregion-->
 </ResourceDictionary>

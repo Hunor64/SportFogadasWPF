@@ -12,17 +12,15 @@
                
            
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                  
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        
                     </Grid.ColumnDefinitions>
 
                     <Button x:Name="btnTopup" Visibility="Collapsed" Grid.Column="2" Grid.RowSpan="2" Click="Button_Click_2" Style="{DynamicResource MainWButtonStyle}" Background="#CF9893">
@@ -47,9 +45,17 @@
                     <Button Visibility="Collapsed" Grid.Column="4" x:Name="btnLogout" Grid.RowSpan="2" Click="Button_Click_5" Style="{DynamicResource MainWButtonStyle}">
                         Kijelentkezés
                     </Button>
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="5" x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="5" x:Name="lblBalance" Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
-
+                    <StackPanel Grid.Column="5" Margin="200,0,0,0" Grid.RowSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="0"  x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0"></Label>
+                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="1"  x:Name="lblBalance" Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
+                        </Grid>
+                    
+                    </StackPanel>
                 </Grid>
            
             </StackPanel>
