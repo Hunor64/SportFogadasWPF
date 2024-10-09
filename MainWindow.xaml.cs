@@ -309,13 +309,13 @@ namespace SportFogadas
         }
         #endregion
 
-        #region Debug Button clicks
-        private void Button_Click(object sender, RoutedEventArgs e)
+        #region Button clicks
+        private void LogIn(object sender, RoutedEventArgs e)
         {
             Login();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void OrganiserPanel(object sender, RoutedEventArgs e)
         {
             if (userPrivilage == "organiser")
             {
@@ -329,7 +329,7 @@ namespace SportFogadas
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void TopUp(object sender, RoutedEventArgs e)
         {
             if (userID != -1)
             {
@@ -339,7 +339,7 @@ namespace SportFogadas
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void BetClick(object sender, RoutedEventArgs e)
         {
             if (userID != -1)
             {
@@ -349,7 +349,7 @@ namespace SportFogadas
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void TopUpReal(object sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo
             {
@@ -358,7 +358,7 @@ namespace SportFogadas
             });
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void LogOut(object sender, RoutedEventArgs e)
         {
             userName = "";
             userID = -1;
@@ -372,6 +372,7 @@ namespace SportFogadas
             btnAdmin.Visibility = Visibility.Collapsed;
             stpOngoingBets.Visibility = Visibility.Collapsed;
             lblBalance.Content = "";
+            lblUsername.Content = "";
             stpOngoingBets.Children.Clear();
         }
 
