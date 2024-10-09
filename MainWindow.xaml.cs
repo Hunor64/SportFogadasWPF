@@ -88,6 +88,7 @@ namespace SportFogadas
             debugWindow.Write($"{events.Count} events read from database");
             eventReader.Close();
             var newEvent = new StackPanel();
+            newEvent.Style = (Style)FindResource("EventStyle");
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");

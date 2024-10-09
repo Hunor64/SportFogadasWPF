@@ -39,7 +39,7 @@ namespace SportFogadas
         #region Login Button Function
         private void btnLogin_Click()
         {
-            string tempUserName = txbLoginUsername.Text;
+            string tempUserName = txbLoginUsername.Text.ToLower();
             string password = pswLoginPassword.Password;
 
 
@@ -92,7 +92,7 @@ namespace SportFogadas
         #region Register Button Function
         private void btnRegister_Click()
         {
-            UserName = txbRegisterUsername.Text;
+            UserName = txbRegisterUsername.Text.ToLower();
             string password = pswRegisterPassword.Password;
             string email = txbRegisterEmail.Text;
 
