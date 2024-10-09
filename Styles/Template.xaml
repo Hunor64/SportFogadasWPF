@@ -163,5 +163,10 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
+    
+    <!--#region EventStyle -->
+    <Style TargetType="StackPanel" x:Key="EventStyle">
+        
+    </Style>
+    <!--#endregion-->
 </ResourceDictionary>
