@@ -206,8 +206,11 @@ namespace SportFogadas
 
 
             var stack = stpOngoingBets;
+            stack.Visibility = Visibility.Collapsed;
             foreach (var bet in bets)
             {
+                stack.Visibility = Visibility.Visible;
+
                 debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
 
                 var loadedBet = new StackPanel();
@@ -247,6 +250,7 @@ namespace SportFogadas
 
                 stack.Children.Add(loadedBet);
             }
+
         }
         #endregion
 
@@ -281,12 +285,11 @@ namespace SportFogadas
                 return null;
             }
         }
-        #endregion
-
-        #region Event Handlers
         protected override void OnClosed(EventArgs e)
         {
-            connection.Close();
+            // Open new window
+            KeepGambling keepGamblingWindow = new();
+            keepGamblingWindow.Show();
             base.OnClosed(e);
             debugWindow.Close();
 
@@ -367,5 +370,7 @@ namespace SportFogadas
 
         }
         #endregion
+
+        
     }
 }

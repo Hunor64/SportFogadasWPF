@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="KEEP_GAMBLING.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
@@ -22,6 +26,12 @@
 
   <ItemGroup>
     <Folder Include="Design\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="KEEP_GAMBLING.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
