@@ -63,9 +63,13 @@ namespace SportFogadas
 
             ReadEvents();
         }
+    
+
         #region Read Events From Database
         public void ReadEvents()
         {
+
+
             for (int i = 0; stpEvents.Children.Count != 0; i++)
             {
                 debugWindow.Write(stpEvents.Children.Count.ToString());
@@ -90,6 +94,7 @@ namespace SportFogadas
             eventReader.Close();
             var newEvent = new StackPanel();
             newEvent.Style = (Style)FindResource("EventStyle");
+
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
@@ -366,7 +371,6 @@ namespace SportFogadas
             btnOrganiser.Visibility = Visibility.Collapsed;
             btnAdmin.Visibility = Visibility.Collapsed;
             stpOngoingBets.Visibility = Visibility.Collapsed;
-            lblUsername.Content = "Nincs bejelentkezve";
             lblBalance.Content = "";
             stpOngoingBets.Children.Clear();
         }
