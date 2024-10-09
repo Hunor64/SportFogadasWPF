@@ -3,6 +3,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SportFogadas
 {
@@ -87,5 +88,34 @@ namespace SportFogadas
         #endregion
         #endregion
 
+        #region Clear clicks
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.Password = ""; // Clear PasswordBox password
+            }
+            else if (sender is TextBox textBox)
+            {
+                textBox.Text = ""; // Clear TextBox text
+            }
+
+        }
+
+        private void pwdPassword_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pwdPassword, null);
+        }
+        private void txtUsername_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtUsername, null);
+        }
+        private void txtEmail_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtEmail, null);
+        }
+  
+        #endregion
     }
 }

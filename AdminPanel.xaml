@@ -5,17 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="AdminPanel" Height="450" Width="800">
+        Title="Admin Ablak" Height="450" Width="510" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1">
     <Grid>
         <StackPanel>
-            <Label>Felhasználónév:</Label>
-            <TextBox x:Name="txtUsername"/>
-            <Label>Jelszó:</Label>
-            <PasswordBox x:Name="pwdPassword"/>
-            <Label>Email:</Label>
-            <TextBox x:Name="txtEmail"/>
-            <Button Content="Add User" Click="AddUser_Click"/>
-            <Button Content="Edit User" Click="EditUser_Click"/>
+            <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
+            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="txtUsername_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Label  Style="{StaticResource LabelStyle}">Jelszó:</Label>
+            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <PasswordBox  x:Name="pwdPassword" Style="{StaticResource PasswordBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+Background="Transparent" BorderBrush="Transparent"  Click="pwdPassword_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Label  Style="{StaticResource LabelStyle}">Email:</Label>
+            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtEmail" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+Background="Transparent" BorderBrush="Transparent"  Click="txtEmail_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

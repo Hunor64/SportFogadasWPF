@@ -117,6 +117,12 @@ namespace SportFogadas
             command.ExecuteNonQuery();
             connection.Close();
         }
+
+        private void btn_BET_Txt_Click(object sender, RoutedEventArgs e)
+        {
+            BetAmountTextBox.Text = "";
+        }
+
         #endregion
     }
 }
