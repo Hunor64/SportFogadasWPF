@@ -33,7 +33,6 @@ namespace SportFogadas
         string userPrivilage = "guest";
 
 
-        bool loggedIn = false;
         #endregion
 
         public MainWindow()
@@ -174,7 +173,6 @@ namespace SportFogadas
                 userName = loginRegister.UserName;
                 userID = loginRegister.UserId;
                 userPrivilage = loginRegister.Privilage;
-                loggedIn = true;
                 debugWindow.Write(userName);
                 debugWindow.Write(userID.ToString());
                 LoadUserBets();
@@ -204,7 +202,6 @@ namespace SportFogadas
             }
             else
             {
-                loggedIn = false;
                 debugWindow.Write("No user logged in");
             }
         }
