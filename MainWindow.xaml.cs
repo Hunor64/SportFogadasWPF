@@ -122,6 +122,7 @@ namespace SportFogadas
                 {
                     Content = "Fogadás",
                 };
+                gomb.Style = (Style)FindResource("BetButtonStyle");
                 gomb.Click += (s, e) =>
                 {
                     if (userID != -1)

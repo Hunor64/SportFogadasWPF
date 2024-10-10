@@ -190,5 +190,21 @@
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
+    <Style TargetType="Button" x:Key="BetButtonStyle">
+        <Setter Property="Background" Value="Teal"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"  CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Content}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>

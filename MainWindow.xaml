@@ -52,16 +52,16 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Label Style="{StaticResource LabelStyle}"  Grid.Row="0"  x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0"></Label>
-                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="1"  x:Name="lblBalance" Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
+                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="1"  x:Name="lblBalance"  Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
                         </Grid>
                     
                     </StackPanel>
                 </Grid>
            
             </StackPanel>
-            <StackPanel x:Name="stpOngoingBets" Margin="10">
-
-            </StackPanel>
+            
+                <StackPanel x:Name="stpOngoingBets" Margin="10"/>
+            
             <Grid x:Name="grdCurrentEvents" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
