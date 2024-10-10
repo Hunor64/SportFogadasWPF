@@ -12,9 +12,9 @@
     <Grid>
         <StackPanel>
             <Label x:Name="lblEgyneleg" Style="{StaticResource LabelStyle}">Egyenleg:</Label>
-            <ComboBox  x:Name="EventComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+            <ComboBox  x:Name="EventComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
            
-            <Grid Width="250" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox Margin="5,5,0,5"  x:Name="BetAmountTextBox" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
                 
                 <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
