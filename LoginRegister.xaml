@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <StackPanel x:Name="stpLogin" VerticalAlignment="Center" Height="300">
+        <StackPanel x:Name="stpLogin" VerticalAlignment="Center" Height="420">
             
             <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -36,7 +36,7 @@
            
          
             <Button x:Name="btnLogin" Click="btnLogin_Click_1" Style="{DynamicResource ButtonStyle}">Bejelentkezés</Button>
-            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click" Style="{DynamicResource ButtonStyle}" Content="Regisztrálás"/>
+            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click" Style="{DynamicResource ButtonStyle}" Margin="0,200,0,0"  Content="Regisztrálás"/>
         </StackPanel>
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
             <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
@@ -70,7 +70,7 @@
                 </Button>
             </Grid>
             <Button x:Name="btnRegister" Click="btnRegister_Click_1" Style="{DynamicResource ButtonStyle}">Regisztrálás</Button>
-            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click" Style="{DynamicResource ButtonStyle}">Bejelentkezés</Button>
+            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click" Style="{DynamicResource ButtonStyle}" Margin="0,130,0,0">Bejelentkezés</Button>
         </StackPanel>
         
     </Grid>

@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <StackPanel Visibility="Visible" x:Name="stpLoadBalance">
+        <StackPanel Visibility="Visible" x:Name="stpLoadBalance" Height="420">
             <Label x:Name="lblDepositBalance">Egyenleg:</Label>
             <Label Style="{StaticResource LabelStyle}">Feltöltendő összeg:</Label>
             <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -23,7 +23,7 @@
                 </Button>
             </Grid>
             <Button x:Name="btnDeposit" Click="btnDeposit_Click" Style="{StaticResource ButtonStyle}">Feltöltés</Button>
-            <Button x:Name="btnDepositSwitch" Click="btnDepositSwitch_Click" Style="{StaticResource ButtonStyle}">Kivétel</Button>
+            <Button x:Name="btnDepositSwitch" Click="btnDepositSwitch_Click" Style="{StaticResource ButtonStyle}" Margin="0,230,0,0">Kivétel</Button>
 
         </StackPanel>
         <StackPanel Visibility="Collapsed" x:Name="stpDeLoadBalance">
@@ -50,7 +50,7 @@
                 </Button>
             </Grid>
             <Button x:Name="btnWithdraw" Click="btnWithdraw_Click" Style="{StaticResource ButtonStyle}">Utalás</Button>
-            <Button x:Name="btnWithdrawSwitch" Click="btnWithdrawSwitch_Click" Style="{StaticResource ButtonStyle}">Feltöltés</Button>
+            <Button x:Name="btnWithdrawSwitch" Click="btnWithdrawSwitch_Click" Style="{StaticResource ButtonStyle}"  Margin="0,166,0,0">Feltöltés</Button>
         </StackPanel>
     </Grid>
 </Window>
