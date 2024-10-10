@@ -63,7 +63,18 @@ namespace SportFogadas
 
             ReadEvents();
         }
-    
+
+        #region Create Elements
+        public TextBlock NewTextBlock(string content) 
+        {
+            return new TextBlock()
+            {
+                Text = content
+            };
+        }
+
+        #endregion
+
 
         #region Read Events From Database
         public void ReadEvents()
@@ -98,26 +109,15 @@ namespace SportFogadas
             events.ForEach(e =>
             {
                 debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
-                newEvent.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = e.EventName
-                    });
-                newEvent.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = e.Location
-                    });
-                newEvent.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = e.Category
-                    });
-                newEvent.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = e.EventDate.ToString()
-                    });
+
+                newEvent.Children.Add(NewTextBlock(e.EventName));
+
+                newEvent.Children.Add(NewTextBlock(e.Location));
+
+                newEvent.Children.Add(NewTextBlock(e.Category));
+
+                newEvent.Children.Add(NewTextBlock(e.EventDate.ToString()));
+
             });
             stpEvents.Children.Add(newEvent);
         }
