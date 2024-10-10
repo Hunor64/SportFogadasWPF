@@ -223,36 +223,17 @@ namespace SportFogadas
 
                 loadedBet.Style = (Style)FindResource("BetStyle");
 
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Bet ID: {bet.BetID}"
-                    });
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Event: {events.First(x => x.EventID == bet.EventID).EventName}"
-                    });
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Amount: {bet.Amount}"
-                    });
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Date: {bet.BetDate}"
-                    });
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Odds: {bet.Odds}"
-                    });
-                loadedBet.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = $"Finised: {bet.Status}"
-                    });
+                loadedBet.Children.Add(NewTextBlock($"Bet ID: {bet.BetID}"));
+
+                loadedBet.Children.Add(NewTextBlock($"Event: {events.First(x => x.EventID == bet.EventID).EventName}"));
+
+                loadedBet.Children.Add(NewTextBlock($"Amount: {bet.Amount}"));
+
+                loadedBet.Children.Add(NewTextBlock($"Date: {bet.BetDate}"));
+
+                loadedBet.Children.Add(NewTextBlock($"Odds: {bet.Odds}"));
+
+                loadedBet.Children.Add(NewTextBlock($"Finised: {bet.Status}"));
 
                 stack.Children.Add(loadedBet);
             }
