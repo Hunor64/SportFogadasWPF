@@ -195,6 +195,7 @@ namespace SportFogadas
                 btnLogout.Visibility = Visibility.Visible;
                 stpOngoingBets.Visibility = Visibility.Visible;
             }
+
             else
             {
                 debugWindow.Write("No user logged in");
@@ -331,6 +332,9 @@ namespace SportFogadas
                 return null;
             }
         }
+        #endregion
+
+        #region On close override
         protected override void OnClosed(EventArgs e)
         {
             if (trueGambling)
@@ -424,8 +428,7 @@ namespace SportFogadas
             adminPanel.ShowDialog();
 
         }
+
         #endregion
-
-
     }
 }

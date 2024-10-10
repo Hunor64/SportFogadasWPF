@@ -44,6 +44,7 @@ Background="Transparent" BorderBrush="Transparent"  Click="txbLocation_button_Cl
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
+            
             <Button Click="Button_Click" Style="{StaticResource ButtonStyle}" Margin="0,10,0,0">Hozzáadás</Button>
         </StackPanel>
     </Grid>
