@@ -147,7 +147,7 @@
 
     <Style TargetType="Button" x:Key="MainWButtonStyle">
         <Setter Property="Background" Value="AntiqueWhite"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Margin" Value="10,0,10,0"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -164,15 +164,31 @@
     </Style>
     <!--#endregion-->
     
-    <!--#region EventStyle -->
+    <!--#region MainWindow Cards -->
     <Style TargetType="StackPanel" x:Key="EventStyle">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
     </Style>
-    <!--#endregion-->
-    
-    <!--#region BetStyle -->
-    <Style TargetType="StackPanel" x:Key="BetStyle">
 
+    <Style TargetType="StackPanel" x:Key="BetStyle">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        
+    </Style>
+    <Style TargetType="Border" x:Key="CardStyle">
+        <Setter Property="BorderBrush" Value="#f4f4f4"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+    <Style TargetType="Border" x:Key="BetCardStyle">
+        <Setter Property="BorderBrush" Value="#f4f4f4"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background" Value="#515151"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="5"/>
     </Style>
     <!--#endregion-->
 </ResourceDictionary>
