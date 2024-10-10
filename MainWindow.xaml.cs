@@ -117,12 +117,31 @@ namespace SportFogadas
                     Margin = new Thickness(0, 0, 0, 10),
                     Padding = new Thickness(10)
                 };
-
+                
                 var eventName = NewTextBlock(e.EventName);
                 var location = NewTextBlock(e.Location);
                 var category = NewTextBlock(e.Category);
                 var eventDate = NewTextBlock(e.EventDate.ToString());
+                int evemtID = e.EventID;
 
+                var gomb = new Button()
+                {
+                    Content = "Fogadás",
+                };
+                gomb.Click += (s, e) =>
+                {
+                    if (userID != -1)
+                    {
+                        Bet betWindow = new Bet(userID, debugWindow, evemtID);
+                        betWindow.ShowDialog();
+                        LoadUserBets();
+                    }
+                };
+
+                if (userID == -1)
+                {
+                    gomb.Visibility = Visibility.Collapsed;    
+                }
                 card.Child = new StackPanel()
                 {
                     Children =
@@ -130,10 +149,10 @@ namespace SportFogadas
                         eventName,
                         location,
                         category,
-                        eventDate
+                        eventDate,
+                        gomb
                     }
                 };
-
                 newEvent.Children.Add(card);
             });
 
@@ -345,6 +364,7 @@ namespace SportFogadas
         private void LogIn(object sender, RoutedEventArgs e)
         {
             Login();
+            ReadEvents();
         }
 
         private void OrganiserPanel(object sender, RoutedEventArgs e)
@@ -375,7 +395,7 @@ namespace SportFogadas
         {
             if (userID != -1)
             {
-                Bet betWindow = new Bet(userID, debugWindow);
+                Bet betWindow = new Bet(userID, debugWindow, -1);
                 betWindow.ShowDialog();
                 LoadUserBets();
             }
@@ -406,6 +426,7 @@ namespace SportFogadas
             lblBalance.Content = "";
             lblUsername.Content = "";
             stpOngoingBets.Children.Clear();
+            ReadEvents();
         }
 
         private void btnAdmin_Click(object sender, RoutedEventArgs e)

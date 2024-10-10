@@ -22,7 +22,7 @@
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button Content="Tét véglegesítése" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Click="PlaceBetButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Tét véglegesítése" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Click="PlaceBetButton_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

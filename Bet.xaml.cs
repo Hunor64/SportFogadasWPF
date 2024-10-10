@@ -14,10 +14,11 @@ namespace SportFogadas
         private int userID;
         private DebugWindow debugWindow;
         private MySqlConnection connection;
+        public int betId;
         #endregion
 
         #region Constructor
-        public Bet(int userID, DebugWindow debugWindow)
+        public Bet(int userID, DebugWindow debugWindow, int selectedBet)
         {
             InitializeComponent();
             this.userID = userID;
@@ -25,6 +26,11 @@ namespace SportFogadas
             connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;");
             CheckBalance(0);
             LoadEvents();
+            this.betId = selectedBet;
+            if (betId != -1)
+            {
+                EventComboBox.SelectedIndex = betId-1;                
+            }
 
         }
         #endregion
