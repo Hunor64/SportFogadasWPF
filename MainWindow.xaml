@@ -63,7 +63,7 @@
             
                 <StackPanel x:Name="stpOngoingBets" Margin="10"/>
             
-            <Grid x:Name="grdCurrentEvents" Margin="10">
+            <Grid x:Name="grdCurrentEvents" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

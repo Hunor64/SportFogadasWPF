@@ -25,17 +25,17 @@
                                      VerticalContentAlignment="Center"
                                      Padding="5"
                                      Foreground="Black"
-                                     IsEnabled="False" Visibility="Hidden"/>
+                                     IsEnabled="False" Visibility="Visible"/>
 
                                 <Button x:Name="PART_Button" Height="35" 
-                                        HorizontalAlignment="Center" Width="300"
+                                        HorizontalAlignment="Right" Width="200"
                                         Content="Választás naptárból"
                                         Background="#e6e0e9"
                                         BorderBrush="Transparent"/>
                                 
                                 <Popup x:Name="PART_Popup"
                                        AllowsTransparency="True"
-                                       Placement="Bottom"
+                                       Placement="Center"
                                        PlacementTarget="{Binding ElementName=PART_Button}"
                                        StaysOpen="False"/>
                             </Grid>
