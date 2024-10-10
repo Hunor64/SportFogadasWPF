@@ -22,7 +22,7 @@
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button x:Name="btnDeposit" Click="btnDeposit_Click" Style="{StaticResource ButtonStyle}">Feltöltés</Button>
+            <Button x:Name="btnDeposit" Click="btnDeposit_Click" Style="{StaticResource ButtonStyle}" Margin="0,10,0,0">Feltöltés</Button>
             <Button x:Name="btnDepositSwitch" Click="btnDepositSwitch_Click" Style="{StaticResource ButtonStyle}" Margin="0,230,0,0">Kivétel</Button>
 
         </StackPanel>
@@ -49,7 +49,7 @@
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button x:Name="btnWithdraw" Click="btnWithdraw_Click" Style="{StaticResource ButtonStyle}">Utalás</Button>
+            <Button x:Name="btnWithdraw" Click="btnWithdraw_Click" Style="{StaticResource ButtonStyle}" Margin="0,10,0,0">Utalás</Button>
             <Button x:Name="btnWithdrawSwitch" Click="btnWithdrawSwitch_Click" Style="{StaticResource ButtonStyle}"  Margin="0,166,0,0">Feltöltés</Button>
         </StackPanel>
     </Grid>
