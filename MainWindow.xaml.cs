@@ -64,14 +64,13 @@ namespace SportFogadas
             ReadEvents();
         }
 
-        #region Create Elements
-        public TextBlock NewTextBlock(string content) 
+        #region Create text
+        public TextBlock NewTextBlock(string content)
         {
             var block = new TextBlock()
             {
-                Text = content
+                Text = content,
             };
-
             return block;
         }
 
@@ -109,17 +108,35 @@ namespace SportFogadas
 
             events.ForEach(e =>
             {
-                debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
+                var card = new Border()
+                {
+                    BorderThickness = new Thickness(1),
+                    BorderBrush = Brushes.Black,
+                    Background = Brushes.White,
+                    CornerRadius = new CornerRadius(5),
+                    Margin = new Thickness(0, 0, 0, 10),
+                    Padding = new Thickness(10)
+                };
 
-                newEvent.Children.Add(NewTextBlock(e.EventName));
+                var eventName = NewTextBlock(e.EventName);
+                var location = NewTextBlock(e.Location);
+                var category = NewTextBlock(e.Category);
+                var eventDate = NewTextBlock(e.EventDate.ToString());
 
-                newEvent.Children.Add(NewTextBlock(e.Location));
+                card.Child = new StackPanel()
+                {
+                    Children =
+                    {
+                        eventName,
+                        location,
+                        category,
+                        eventDate
+                    }
+                };
 
-                newEvent.Children.Add(NewTextBlock(e.Category));
-
-                newEvent.Children.Add(NewTextBlock(e.EventDate.ToString()));
-
+                newEvent.Children.Add(card);
             });
+
             stpEvents.Children.Add(newEvent);
         }
         #endregion
@@ -211,35 +228,68 @@ namespace SportFogadas
             userReader.Close();
             debugWindow.Write($"Balance read from database");
 
-
             var stack = stpOngoingBets;
-            stpOngoingBets.Visibility = Visibility.Collapsed;
+            stack.Visibility = Visibility.Collapsed;
+            stack.Children.Clear();
+
             foreach (var bet in bets)
             {
-                stpOngoingBets.Visibility = Visibility.Visible;
+                stack.Visibility = Visibility.Visible;
 
-                debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
+                var title = $"Bet ID: {bet.BetID}";
+                var content = $"Event: {events.First(x => x.EventID == bet.EventID).EventName}\n" +
+                              $"Amount: {bet.Amount}\n" +
+                              $"Date: {bet.BetDate}\n" +
+                              $"Odds: {bet.Odds}\n" +
+                              $"Finished: {bet.Status}";
 
-                var loadedBet = new StackPanel();
-
-                loadedBet.Style = (Style)FindResource("BetStyle");
-
-                loadedBet.Children.Add(NewTextBlock($"Bet ID: {bet.BetID}"));
-
-                loadedBet.Children.Add(NewTextBlock($"Event: {events.First(x => x.EventID == bet.EventID).EventName}"));
-
-                loadedBet.Children.Add(NewTextBlock($"Amount: {bet.Amount}"));
-
-                loadedBet.Children.Add(NewTextBlock($"Date: {bet.BetDate}"));
-
-                loadedBet.Children.Add(NewTextBlock($"Odds: {bet.Odds}"));
-
-                loadedBet.Children.Add(NewTextBlock($"Finised: {bet.Status}"));
-
-                stack.Children.Add(loadedBet);
+                AddCardToStackPanel(stack, title, content);
             }
-
         }
+        private Border CreateCard(string title, string content)
+        {
+            var card = new Border()
+            {
+                BorderThickness = new Thickness(1),
+                BorderBrush = Brushes.Black,
+                Background = Brushes.White,
+                CornerRadius = new CornerRadius(5),
+                Margin = new Thickness(0, 0, 0, 10),
+                Padding = new Thickness(10)
+            };
+
+            var titleLabel = new TextBlock()
+            {
+                Text = title,
+                FontWeight = FontWeights.Bold,
+                FontSize = 16,
+                Margin = new Thickness(0, 0, 0, 5)
+            };
+
+            var contentLabel = new TextBlock()
+            {
+                Text = content,
+                Margin = new Thickness(0, 0, 0, 5)
+            };
+
+            card.Child = new StackPanel()
+            {
+                Children =
+                    {
+                        titleLabel,
+                        contentLabel
+                    }
+            };
+
+            return card;
+        }
+
+        private void AddCardToStackPanel(StackPanel stackPanel, string title, string content)
+        {
+            var card = CreateCard(title, content);
+            stackPanel.Children.Add(card);
+        }
+
         #endregion
 
         #region Database Functions
@@ -366,6 +416,6 @@ namespace SportFogadas
         }
         #endregion
 
-        
+
     }
 }
