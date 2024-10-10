@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Admin Ablak" Height="450" Width="510" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1">
+        Title="Admin Ablak" Height="450" Width="510" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1"
+                WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        >
     <Grid>
         <StackPanel>
             <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
