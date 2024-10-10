@@ -67,14 +67,15 @@ namespace SportFogadas
         #region Create Elements
         public TextBlock NewTextBlock(string content) 
         {
-            return new TextBlock()
+            var block = new TextBlock()
             {
                 Text = content
             };
+
+            return block;
         }
 
         #endregion
-
 
         #region Read Events From Database
         public void ReadEvents()
@@ -212,10 +213,10 @@ namespace SportFogadas
 
 
             var stack = stpOngoingBets;
-            stack.Visibility = Visibility.Collapsed;
+            stpOngoingBets.Visibility = Visibility.Collapsed;
             foreach (var bet in bets)
             {
-                stack.Visibility = Visibility.Visible;
+                stpOngoingBets.Visibility = Visibility.Visible;
 
                 debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
 
