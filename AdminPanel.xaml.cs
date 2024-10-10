@@ -52,11 +52,11 @@ namespace SportFogadas
                     command.Parameters.AddWithValue("@Privilage", "user");
 
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Operation successful!");
+                    MessageBox.Show("Siker!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Hiba: " + ex.Message);
                 }
             }
         }

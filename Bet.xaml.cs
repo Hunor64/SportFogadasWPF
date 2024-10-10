@@ -58,7 +58,7 @@ namespace SportFogadas
         {
             if (EventComboBox.SelectedItem == null || string.IsNullOrEmpty(BetAmountTextBox.Text))
             {
-                MessageBox.Show("Please select an event and enter a bet amount.");
+                MessageBox.Show("Adjon meg egy eseményt és egy összeget!");
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace SportFogadas
 
             if (!CheckBalance(betAmount))
             {
-                MessageBox.Show("Insufficient balance.");
+                MessageBox.Show("Nem megfelelő egyenleg!");
                 return;
             }
 
@@ -110,7 +110,7 @@ namespace SportFogadas
 
             command.ExecuteNonQuery();
             connection.Close();
-            MessageBox.Show("Bet placed successfully!");
+            MessageBox.Show("Siikeres fogadás!");
         }
 
         private void UpdateBalance(int betAmount)

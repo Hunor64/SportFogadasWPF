@@ -47,7 +47,7 @@ namespace SportFogadas
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Event created successfully!");
+                        MessageBox.Show("Esemény sikeresen elkészítve!");
                         debugWindow.Write("Event created successfully!");
                         this.DialogResult = true;
                         connection.Close();
@@ -56,7 +56,7 @@ namespace SportFogadas
                     else
                     {
                         debugWindow.Write("Failed to create event!");
-                        MessageBox.Show("Failed to create event!");
+                        MessageBox.Show("Sikertelen esemény készítés!");
                     }
                 }
             }
@@ -64,7 +64,7 @@ namespace SportFogadas
             {
                 debugWindow.Write("Failed to create event!");
                 debugWindow.Write(ex.ToString());
-                MessageBox.Show("Failed to create event!");
+                MessageBox.Show("Sikertelen esemény készítés!");
                 throw;
             }
         }

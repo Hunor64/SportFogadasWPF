@@ -21,7 +21,7 @@ namespace SportFogadas
     public partial class MainWindow : Window
     {
         public bool debugOn = false;
-        public bool trueGambling = false; //CSAK TRUE LEHET. SEMMI MÁS!!!!
+        public bool trueGambling = true; //CSAK TRUE LEHET. SEMMI MÁS!!!!
 
         #region Initial Variables
         private DebugWindow debugWindow;
