@@ -107,17 +107,12 @@ namespace SportFogadas
 
             events.ForEach(e =>
             {
-                var card = new Border()
-                {
-                    BorderThickness = new Thickness(1),
-                    BorderBrush = Brushes.Black,
-                    Background = Brushes.White,
-                    CornerRadius = new CornerRadius(5),
-                    Margin = new Thickness(0, 0, 0, 10),
-                    Padding = new Thickness(10)
-                };
-                
+                var card = new Border();
+                card.Style = (Style)FindResource("CardStyle");
+
+
                 var eventName = NewTextBlock(e.EventName);
+                eventName.FontWeight = FontWeights.Bold;
                 var location = NewTextBlock(e.Location);
                 var category = NewTextBlock(e.Category);
                 var eventDate = NewTextBlock(e.EventDate.ToString());
@@ -264,28 +259,24 @@ namespace SportFogadas
         }
         private Border CreateCard(string title, string content)
         {
-            var card = new Border()
-            {
-                BorderThickness = new Thickness(1),
-                BorderBrush = Brushes.Black,
-                Background = Brushes.White,
-                CornerRadius = new CornerRadius(5),
-                Margin = new Thickness(0, 0, 0, 10),
-                Padding = new Thickness(10)
-            };
+            var card = new Border();
+            card.Style = (Style)FindResource("BetCardStyle");
 
             var titleLabel = new TextBlock()
             {
                 Text = title,
                 FontWeight = FontWeights.Bold,
                 FontSize = 16,
-                Margin = new Thickness(0, 0, 0, 5)
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground= new SolidColorBrush(Colors.White)
             };
 
             var contentLabel = new TextBlock()
             {
                 Text = content,
-                Margin = new Thickness(0, 0, 0, 5)
+                FontSize= 14,
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground = new SolidColorBrush(Colors.White)
             };
 
             card.Child = new StackPanel()
@@ -303,6 +294,7 @@ namespace SportFogadas
         private void AddCardToStackPanel(StackPanel stackPanel, string title, string content)
         {
             var card = CreateCard(title, content);
+            stackPanel.Style = (Style)FindResource("BetStyle");
             stackPanel.Children.Add(card);
         }
 
