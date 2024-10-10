@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Egyenleg Menedzser Ablak" Height="450" Width="300" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1"
+        Title="Egyenleg Menedzser Ablak" Height="450" Width="300" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
                 WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         >

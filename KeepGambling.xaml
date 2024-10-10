@@ -9,7 +9,7 @@
         MinHeight="340" MinWidth="400"
         MaxHeight="340" MaxWidth="400"
         ResizeMode="NoResize"
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
         >
     <Window.Background>
         <ImageBrush ImageSource="KEEP_GAMBLING.jpg"/>
