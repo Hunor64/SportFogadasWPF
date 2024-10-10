@@ -150,6 +150,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="Padding" Value="10"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Template">
@@ -194,7 +195,8 @@
         <Setter Property="Background" Value="Teal"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="Margin" Value="10,5,10,0"/>
+        <Setter Property="Padding" Value="10"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
