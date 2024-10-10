@@ -72,7 +72,7 @@ namespace SportFogadas
             }
 
             float odds = 1f;
-            SaveBetToDatabase(DateTime.Now, odds, betAmount, userID, eventId, true);
+            SaveBetToDatabase(DateTime.Now, odds, betAmount, userID, eventId, false);
             UpdateBalance(betAmount);
             CheckBalance(0);
         }
