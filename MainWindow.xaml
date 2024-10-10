@@ -24,10 +24,10 @@
                         
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="btnTopup" Visibility="Collapsed" Grid.Column="2" Grid.RowSpan="2" Click="TopUp" Style="{DynamicResource MainWButtonStyle}" Background="Coral">
+                    <Button x:Name="btnTopup" Visibility="Collapsed" Grid.Column="2" Grid.RowSpan="2" Click="TopUp" Style="{DynamicResource MainWButtonStyle}" Background="#f37748">
                         Pénz Feltöltés (Debug)
                     </Button>
-                    <Button Visibility="Collapsed" x:Name="btnRealTopup" Grid.Column="3" Grid.RowSpan="2" Click="TopUpReal" Style="{DynamicResource MainWButtonStyle}" Background="Coral">
+                    <Button Visibility="Collapsed" x:Name="btnRealTopup" Grid.Column="3" Grid.RowSpan="2" Click="TopUpReal" Style="{DynamicResource MainWButtonStyle}" Background="#d56062">
                         Pénz Feltöltés (Real, Trust)
                     </Button>
                     <Button x:Name="btnBet" Visibility="Collapsed" Click="BetClick" Grid.RowSpan="2" Grid.Column="1" Style="{DynamicResource MainWButtonStyle}" Background="Teal">
@@ -62,9 +62,9 @@
            
             </StackPanel>
             
-                <StackPanel x:Name="stpOngoingBets" Margin="10"/>
+                <StackPanel x:Name="stpOngoingBets" Margin="10" HorizontalAlignment="Center"/>
             
-            <Grid x:Name="grdCurrentEvents" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+            <Grid HorizontalAlignment="Center" x:Name="grdCurrentEvents" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
