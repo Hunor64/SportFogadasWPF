@@ -130,7 +130,7 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="0,5,0,5"/>
         <Setter Property="Width" Value="245"/>
-        <Setter Property="Height" Value="40"/>
+   
         <Setter Property="Foreground" Value="#515151" />
         <Setter Property="Background" Value="#e6e0e9"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
