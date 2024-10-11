@@ -155,7 +155,7 @@ namespace SportFogadas
         private void btnSwitchCreate_Click(object sender, RoutedEventArgs e)
         {
             btnAddUser.Visibility = Visibility.Visible;
-            btnEditUser.Visibility = Visibility.Hidden;
+            btnEditUser.Visibility = Visibility.Collapsed;
             btnSwitchEdit.Visibility = Visibility.Visible;
             btnSwitchCreate.Visibility = Visibility.Collapsed;
             UserComboBox.Visibility = Visibility.Collapsed;
