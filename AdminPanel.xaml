@@ -12,15 +12,21 @@
     <Grid>
         <StackPanel>
             <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
-            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid x:Name="grdUserName" Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
 
-                <TextBox  x:Name="txtUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+                <TextBox Visibility="Visible" x:Name="txtUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
 
-                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                <Button Visibility="Visible" Name="btnDeleteUsername" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
          Background="Transparent" BorderBrush="Transparent"  Click="txtUsername_clear_Click">
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
+<!--c-->
+
+            <ComboBox Visibility="Collapsed" x:Name="EventComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" Width="500"/>
+
+
+            <!--c-->
             <Label  Style="{StaticResource LabelStyle}">Jelszó:</Label>
             <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
 
@@ -41,8 +47,10 @@ Background="Transparent" BorderBrush="Transparent"  Click="txtEmail_clear_Click"
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="btnAddUser" Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnEditUser" Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="btnSwitchEdit" Content="Felhasználó változtatása" Click="btnSwitchEdit_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnSwitchCreate" Content="Felhasználó hozzáadása" Click="btnSwitchCreate_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

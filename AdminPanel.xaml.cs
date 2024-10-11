@@ -24,18 +24,40 @@ namespace SportFogadas
             string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate, IsActive, Privilage) VALUES (@Username, @Password, @Email, @JoinDate, @IsActive, @Privilage)";
 
             ExecuteQuery(query, username, password, email);
+            ComboBoxFill();
+
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsername.Text;
+            string username = EventComboBox.Text;
             string password = pwdPassword.Password;
             string email = txtEmail.Text;
             string query = "UPDATE Bettors SET Password=@Password, Email=@Email WHERE Username=@Username";
 
             ExecuteQuery(query, username, password, email);
+            ComboBoxFill();
         }
+        public void ComboBoxFill()
+        {
+            EventComboBox.Items.Clear();
 
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT Username FROM Bettors", connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                debugWindow.Write(reader.HasRows.ToString());
+                if (reader != null && reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string username = reader.GetString("Username");
+                        EventComboBox.Items.Add(username);
+                    }
+                }
+            }
+        }
         private void ExecuteQuery(string query, string username, string password, string email)
         {
             using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
@@ -115,7 +137,31 @@ namespace SportFogadas
         {
             Clear_Click(txtEmail, null);
         }
-  
+
         #endregion
+
+        private void btnSwitchEdit_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddUser.Visibility = Visibility.Hidden;
+            btnEditUser.Visibility = Visibility.Visible;
+            btnSwitchEdit.Visibility = Visibility.Collapsed;
+            btnSwitchCreate.Visibility = Visibility.Visible;
+            EventComboBox.Visibility = Visibility.Visible;
+            grdUserName.Visibility = Visibility.Collapsed;
+            ComboBoxFill();
+
+        }
+
+        private void btnSwitchCreate_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddUser.Visibility = Visibility.Visible;
+            btnEditUser.Visibility = Visibility.Hidden;
+            btnSwitchEdit.Visibility = Visibility.Visible;
+            btnSwitchCreate.Visibility = Visibility.Collapsed;
+            EventComboBox.Visibility = Visibility.Collapsed;
+            grdUserName.Visibility = Visibility.Visible;
+            ComboBoxFill();
+
+        }
     }
 }
