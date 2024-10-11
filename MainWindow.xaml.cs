@@ -116,26 +116,52 @@ namespace SportFogadas
                 var location = NewTextBlock(e.Location);
                 var category = NewTextBlock(e.Category);
                 var eventDate = NewTextBlock(e.EventDate.ToString());
-                int evemtID = e.EventID;
+                int tempEventID = e.EventID;
 
-                var gomb = new Button()
-                {
-                    Content = "Fogadás",
-                };
+                var gomb = new Button();
                 gomb.Style = (Style)FindResource("BetButtonStyle");
-                gomb.Click += (s, e) =>
+                if (userPrivilage == "user")
                 {
-                    if (userID != -1)
+                    gomb.Content = "Fogadás";
+                    gomb.Click += (s, e) =>
                     {
-                        Bet betWindow = new Bet(userID, debugWindow, evemtID);
+
+                        Bet betWindow = new Bet(userID, debugWindow, tempEventID);
                         betWindow.ShowDialog();
                         LoadUserBets();
-                    }
-                };
+
+                    };
+                }
+                else if (userPrivilage == "organiser")
+                {
+                    gomb.Content = "Törlés";
+                    gomb.Click += (s, e) =>
+                    {
+                        MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretné az eseményt?", "Törlés", MessageBoxButton.YesNo);
+
+                        if (result.ToString() == "Yes")
+                        {
+                            var reader = ReadDB($"SELECT * FROM Bets WHERE EventID = {tempEventID}");
+                            if (!reader.HasRows)
+                            {
+                                reader.Close();
+                                Exec("SET FOREIGN_KEY_CHECKS=OFF;");
+                                Exec($"DELETE FROM Events WHERE EventID = {tempEventID}");
+                            }
+                            else
+                            {
+                                reader.Close();
+                                MessageBox.Show("Az eseményhez tartozik fogadás, nem törölhető!");
+                            }
+                        }
+                        ReadEvents();
+                    };
+
+                }
 
                 if (userID == -1)
                 {
-                    gomb.Visibility = Visibility.Collapsed;    
+                    gomb.Visibility = Visibility.Collapsed;
                 }
                 card.Child = new StackPanel()
                 {
@@ -270,13 +296,13 @@ namespace SportFogadas
                 FontWeight = FontWeights.Bold,
                 FontSize = 16,
                 Margin = new Thickness(0, 0, 0, 5),
-                Foreground= new SolidColorBrush(Colors.White)
+                Foreground = new SolidColorBrush(Colors.White)
             };
 
             var contentLabel = new TextBlock()
             {
                 Text = content,
-                FontSize= 14,
+                FontSize = 14,
                 Margin = new Thickness(0, 0, 0, 5),
                 Foreground = new SolidColorBrush(Colors.White)
             };
@@ -307,9 +333,11 @@ namespace SportFogadas
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand(command, connection);
-                cmd.ExecuteNonQuery();
-                debugWindow.Write("Command executed successfully");
+                using (MySqlCommand cmd = new MySqlCommand(command, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                    debugWindow.Write("Command executed successfully");
+                }
             }
             catch (Exception ex)
             {

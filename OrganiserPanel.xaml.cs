@@ -92,6 +92,5 @@ namespace SportFogadas
             Clear_Click(txbLocation, null);
         }
         #endregion
-
     }
 }
