@@ -25,6 +25,7 @@ namespace SportFogadas
         public OrganiserPanel(DebugWindow debugWindow)
         {
             InitializeComponent();
+            dtpEventDate.DisplayDateStart = DateTime.Now;
             this.debugWindow = debugWindow;
         }
         #endregion
@@ -91,5 +92,6 @@ namespace SportFogadas
             Clear_Click(txbLocation, null);
         }
         #endregion
+
     }
 }
