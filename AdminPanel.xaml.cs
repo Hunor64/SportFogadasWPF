@@ -142,7 +142,7 @@ namespace SportFogadas
 
         private void btnSwitchEdit_Click(object sender, RoutedEventArgs e)
         {
-            btnAddUser.Visibility = Visibility.Hidden;
+            btnAddUser.Visibility = Visibility.Collapsed;
             btnEditUser.Visibility = Visibility.Visible;
             btnSwitchEdit.Visibility = Visibility.Collapsed;
             btnSwitchCreate.Visibility = Visibility.Visible;
