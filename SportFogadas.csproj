@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Design\**" />
+    <EmbeddedResource Remove="Design\**" />
+    <None Remove="Design\**" />
+    <Page Remove="Design\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="KEEP_GAMBLING.jpg" />
   </ItemGroup>
 
@@ -23,10 +30,6 @@
     <None Update="Bets.sqlite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Design\" />
   </ItemGroup>
 
   <ItemGroup>

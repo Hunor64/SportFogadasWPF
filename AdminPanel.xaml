@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <StackPanel>
+        <StackPanel Height="400">
             <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
             <Grid x:Name="grdUserName" Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
 
