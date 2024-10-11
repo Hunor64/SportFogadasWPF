@@ -125,20 +125,16 @@
 
     <Style TargetType="ComboBox" x:Key="ComboboxStyle">
       
-        <Setter Property="Margin" Value="5,5,0,5"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Padding" Value="0,5,0,5"/>
         <Setter Property="Width" Value="245"/>
+        <Setter Property="Height" Value="40"/>
         <Setter Property="Foreground" Value="#515151" />
         <Setter Property="Background" Value="#e6e0e9"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Style.Triggers>
-            <Trigger Property="IsEditable" Value="true">
-                <Setter Property="IsTabStop" Value="false"/>
-
-            </Trigger>
-        </Style.Triggers>
+        
 
     </Style>
     <!--#endregion-->

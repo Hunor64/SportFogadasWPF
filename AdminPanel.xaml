@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Admin Ablak" Height="450" Width="510" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
+        Title="Admin Ablak" Height="450" Width="515" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
                 WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         >
@@ -45,10 +45,10 @@ Background="Transparent" BorderBrush="Transparent"  Click="txtEmail_clear_Click"
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button x:Name="btnAddUser" Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button Visibility="Collapsed" x:Name="btnEditUser" Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button x:Name="btnSwitchEdit" Content="Felhasználó változtatása" Click="btnSwitchEdit_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button Visibility="Collapsed" x:Name="btnSwitchCreate" Content="Felhasználó hozzáadása" Click="btnSwitchCreate_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="btnAddUser" Content="Felhasználó hozzáadása" Click="AddUser_Click" Margin="0,10,0,0"  Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnEditUser" Content="Felhasználó változtatása"  Margin="0,10,0,0" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="btnSwitchEdit" Content="Felhasználó változtatása" Click="btnSwitchEdit_Click"  Margin="0,100,0,0" Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnSwitchCreate" Content="Felhasználó hozzáadása"  Margin="0,101,0,0" Click="btnSwitchCreate_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>
