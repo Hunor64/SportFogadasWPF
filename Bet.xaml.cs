@@ -29,7 +29,7 @@ namespace SportFogadas
             this.betId = selectedBet;
             if (betId != -1)
             {
-                EventComboBox.SelectedIndex = betId-1;                
+                EventComboBox.SelectedIndex = betId - 1;
             }
 
         }
@@ -39,19 +39,18 @@ namespace SportFogadas
         private void LoadEvents()
         {
             connection.Open();
-            string query = "SELECT EventID, EventName FROM Events";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            MySqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            using (MySqlDataReader reader = new MySqlCommand("SELECT EventID, EventName FROM Events", connection).ExecuteReader())
             {
-                EventComboBox.Items.Add(new ComboBoxItem
+                while (reader.Read())
                 {
-                    Content = reader["EventName"].ToString(),
-                    Tag = reader["EventID"]
-                });
+                    EventComboBox.Items.Add(new ComboBoxItem
+                    {
+                        Content = reader["EventName"].ToString(),
+                        Tag = reader["EventID"]
+                    });
+                }
             }
-            connection.Close();
+
         }
 
         private void PlaceBetButton_Click(object sender, RoutedEventArgs e)
