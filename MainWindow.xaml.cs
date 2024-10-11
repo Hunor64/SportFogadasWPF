@@ -87,21 +87,21 @@ namespace SportFogadas
                 stpEvents.Children.Remove(stpEvents.Children[0]);
             }
             events = new List<Events>();
-            var eventReader = ReadDB("SELECT * FROM Events");
-
-            while (eventReader.Read())
+            using (var eventReader = ReadDB("SELECT * FROM Events"))
             {
-                events.Add(new Events()
+                while (eventReader.Read())
                 {
-                    EventID = eventReader.GetInt32("EventID"),
-                    EventName = eventReader.GetString("EventName"),
-                    EventDate = eventReader.GetDateTime("EventDate"),
-                    Category = eventReader.GetString("Category"),
-                    Location = eventReader.GetString("Location")
-                });
+                    events.Add(new Events()
+                    {
+                        EventID = eventReader.GetInt32("EventID"),
+                        EventName = eventReader.GetString("EventName"),
+                        EventDate = eventReader.GetDateTime("EventDate"),
+                        Category = eventReader.GetString("Category"),
+                        Location = eventReader.GetString("Location")
+                    });
+                }
             }
             debugWindow.Write($"{events.Count} events read from database");
-            eventReader.Close();
             var newEvent = new StackPanel();
             newEvent.Style = (Style)FindResource("EventStyle");
 
@@ -141,17 +141,17 @@ namespace SportFogadas
 
                         if (result.ToString() == "Yes")
                         {
-                            var reader = ReadDB($"SELECT * FROM Bets WHERE EventID = {tempEventID}");
-                            if (!reader.HasRows)
+                            using (var reader = ReadDB($"SELECT * FROM Bets WHERE EventID = {tempEventID}"))
                             {
-                                reader.Close();
-                                Exec("SET FOREIGN_KEY_CHECKS=OFF;");
-                                Exec($"DELETE FROM Events WHERE EventID = {tempEventID}");
-                            }
-                            else
-                            {
-                                reader.Close();
-                                MessageBox.Show("Az eseményhez tartozik fogadás, nem törölhető!");
+                                if (!reader.HasRows)
+                                {
+                                    Exec("SET FOREIGN_KEY_CHECKS=OFF;");
+                                    Exec($"DELETE FROM Events WHERE EventID = {tempEventID}");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Az eseményhez tartozik fogadás, nem törölhető!");
+                                }
                             }
                         }
                         ReadEvents();
@@ -243,28 +243,30 @@ namespace SportFogadas
 
             lblUsername.Content = userName;
 
-            var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
-            while (betReader.Read())
+            using (var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}"))
             {
-                bets.Add(new UserBets()
+                while (betReader.Read())
                 {
-                    BetID = betReader.GetInt32("BetID"),
-                    BettorsID = betReader.GetInt32("BettorsID"),
-                    EventID = betReader.GetInt32("EventID"),
-                    Amount = betReader.GetInt32("Amount"),
-                    BetDate = betReader.GetDateTime("BetDate"),
-                    Odds = betReader.GetFloat("Odds"),
-                    Status = betReader.GetBoolean("Status")
-                });
+                    bets.Add(new UserBets()
+                    {
+                        BetID = betReader.GetInt32("BetID"),
+                        BettorsID = betReader.GetInt32("BettorsID"),
+                        EventID = betReader.GetInt32("EventID"),
+                        Amount = betReader.GetInt32("Amount"),
+                        BetDate = betReader.GetDateTime("BetDate"),
+                        Odds = betReader.GetFloat("Odds"),
+                        Status = betReader.GetBoolean("Status")
+                    });
 
+                }
             }
-            betReader.Close();
             debugWindow.Write($"{bets.Count} bets read from database");
 
-            var userReader = ReadDB($"SELECT * FROM Bettors WHERE BettorsID = {userID}");
-            userReader.Read();
-            lblBalance.Content = $"Egyenleg: {userReader.GetInt32("Balance")}";
-            userReader.Close();
+            using (var userReader = ReadDB($"SELECT * FROM Bettors WHERE BettorsID = {userID}"))
+            {
+                userReader.Read();
+                lblBalance.Content = $"Egyenleg: {userReader.GetInt32("Balance")}";
+            }
             debugWindow.Write($"Balance read from database");
 
             var stack = stpOngoingBets;
