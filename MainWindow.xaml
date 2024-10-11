@@ -10,8 +10,7 @@
     <Grid>
         <StackPanel>
             <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#65558f">
-               
-           
+
                 <Grid>
                   
                     <Grid.ColumnDefinitions>

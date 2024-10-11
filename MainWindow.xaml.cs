@@ -249,12 +249,12 @@ namespace SportFogadas
             {
                 stack.Visibility = Visibility.Visible;
 
-                var title = $"Bet ID: {bet.BetID}";
-                var content = $"Event: {events.First(x => x.EventID == bet.EventID).EventName}\n" +
-                              $"Amount: {bet.Amount}\n" +
-                              $"Date: {bet.BetDate}\n" +
-                              $"Odds: {bet.Odds}\n" +
-                              $"Finished: {bet.Status}";
+                var title = $"Fogadás ID: {bet.BetID}";
+                var content = $"Esemény: {events.First(x => x.EventID == bet.EventID).EventName}\n" +
+                              $"Összeg: {bet.Amount}\n" +
+                              $"Dátum: {bet.BetDate}\n" +
+                              $"Szorzó: {bet.Odds}\n" +
+                              $"Befejeződött: {bet.Status}";
 
                 AddCardToStackPanel(stack, title, content);
             }
