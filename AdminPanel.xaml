@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         >
     <Grid>
-        <StackPanel>
+        <StackPanel Height="400">
             <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
             <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
 
@@ -41,8 +41,8 @@ Background="Transparent" BorderBrush="Transparent"  Click="txtEmail_clear_Click"
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button Content="Felhasználó változtatása" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click" Margin="0,10,0,0" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Felhasználó változtatása" Click="EditUser_Click"  Margin="0,130,0,0"  Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>
