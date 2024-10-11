@@ -21,12 +21,10 @@
                     <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
                 </Button>
             </Grid>
-<!--c-->
-
-            <ComboBox Visibility="Collapsed" x:Name="EventComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" Width="500"/>
-
-
-            <!--c-->
+            
+<!---->
+            <ComboBox SelectionChanged="UserComboBox_SelectionChanged" Visibility="Collapsed" x:Name="UserComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" Width="500"/>
+<!---->
             <Label  Style="{StaticResource LabelStyle}">Jelszó:</Label>
             <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
 
