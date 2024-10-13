@@ -61,8 +61,13 @@ namespace SportFogadas
                 return;
             }
 
+            if (!int.TryParse(BetAmountTextBox.Text, out int betAmount))
+            {
+                MessageBox.Show("Kérjük, adjon meg egy érvényes számot az összeghez!");
+                return;
+            }
+
             int eventId = (int)((ComboBoxItem)EventComboBox.SelectedItem).Tag;
-            int betAmount = int.Parse(BetAmountTextBox.Text);
 
             if (!CheckBalance(betAmount))
             {
@@ -78,43 +83,48 @@ namespace SportFogadas
 
         private bool CheckBalance(int betAmount)
         {
-            connection.Open();
-            string query = "SELECT Balance FROM Bettors WHERE BettorsID = @userID";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@userID", userID);
-            int balance = Convert.ToInt32(command.ExecuteScalar());
-            connection.Close();
-            lblEgyneleg.Content = $"Egyenleg: {balance}";
-            if (balance != 0)
+            using (var connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
             {
+                connection.Open();
+                string query = "SELECT Balance FROM Bettors WHERE BettorsID = @userID";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@userID", userID);
+                int balance = Convert.ToInt32(command.ExecuteScalar());
+                lblEgyneleg.Content = $"Egyenleg: {balance}";
+                if (betAmount == 0)
+                {
+                    return false;
+                }
                 return balance >= betAmount;
-            }
-            else
-            {
-                return false;
             }
         }
 
+
         private void SaveBetToDatabase(DateTime betDate, float odds, int amount, int bettorsId, int eventId, bool status)
         {
-            connection.Open();
-            string query = "INSERT INTO Bets (BetDate, Odds, Amount, BettorsID, EventID, Status) VALUES (@BetDate, @Odds, @Amount, @BettorsID, @EventID, @Status)";
-            MySqlCommand command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@BetDate", betDate);
-            command.Parameters.AddWithValue("@Odds", odds);
-            command.Parameters.AddWithValue("@Amount", amount);
-            command.Parameters.AddWithValue("@BettorsID", bettorsId);
-            command.Parameters.AddWithValue("@EventID", eventId);
-            command.Parameters.AddWithValue("@Status", status);
+            using (var connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
+            {
+                connection.Open();
+                string query = "INSERT INTO Bets (BetDate, Odds, Amount, BettorsID, EventID, Status) VALUES (@BetDate, @Odds, @Amount, @BettorsID, @EventID, @Status)";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@BetDate", betDate);
+                command.Parameters.AddWithValue("@Odds", odds);
+                command.Parameters.AddWithValue("@Amount", amount);
+                command.Parameters.AddWithValue("@BettorsID", bettorsId);
+                command.Parameters.AddWithValue("@EventID", eventId);
+                command.Parameters.AddWithValue("@Status", status);
 
-            command.ExecuteNonQuery();
-            connection.Close();
+                command.ExecuteNonQuery();
+            }
             MessageBox.Show("Siikeres fogadás!");
         }
 
         private void UpdateBalance(int betAmount)
         {
-            connection.Open();
+            if (connection.State == System.Data.ConnectionState.Closed)
+            {
+                connection.Open();
+            }
             string query = "UPDATE Bettors SET Balance = Balance - @betAmount WHERE BettorsID = @userID";
             MySqlCommand command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@betAmount", betAmount);
