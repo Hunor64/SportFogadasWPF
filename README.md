@@ -29,3 +29,13 @@ Az UI terveket [itt találod](https://github.com/Hunor64/SportFogadasWPF/tree/ma
 
 - Teljes hozzáférése van az összes felhasználó adatához, beleértve azok egyenlegét, státuszát, és jelszavait (hash-elve).
 - Új felhasználók létrehozása, meglévők szerkesztése.
+
+## Munkamegosztás
+
+### Hunor
+
+C# Backend, Adatbázis
+
+### Laci 
+
+XAML Frontend
