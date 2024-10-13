@@ -1,26 +1,31 @@
-Indítás:
-1. <a>https://github.com/Hunor64/SportFogadasWPF/blob/master/SportFogadasWPF.sql</a> Lefuttatása mysql-ben
-2. project futtatása visual studióban
+# SportFogadasWPF
 
-UI Tervek:
-<a>https://github.com/Hunor64/SportFogadasWPF/tree/master/UI%20template</a>
+## Indítás
 
-Szerepkörök:
+1. [SportFogadasWPF.sql](https://github.com/Hunor64/SportFogadasWPF/blob/master/SportFogadasWPF.sql) lefuttatása MySQL-ben.
+2. A project futtatása Visual Studio-ban.
 
-Guest:
+## UI Tervek
 
-Megnézheti az eventeket. Nem fogadhat.
+Az UI terveket [itt találod](https://github.com/Hunor64/SportFogadasWPF/tree/master/UI%20template).
 
-User: Bettor
+## Szerepkörök
 
-Regisztrálhat, fogadásokat tehet, egyenlegét kezelheti. Megtekintheti saját fogadásait és azok státuszát.
+### Guest
 
-Nem fér hozzá adminisztrációs funkciókhoz (pl. új események létrehozása, felhasználók kezelése).
+- Megnézheti az eventeket, de nem fogadhat.
 
-Moderator: Organizer
+### User: Bettor
 
-Minden jogot megkap, amit a User szerepkör is, de ezen felül: Láthatja más felhasználók fogadásait. Adminisztrálhatja a felhasználókat (pl. letilthatja őket, vagy aktiválhatja a fiókjukat). Felülvizsgálhatja és módosíthatja a fogadások státuszát. Új eseményeket hozhat létre vagy törölhet. Módosíthatja az események adatait (pl. időpont, helyszín).
+- Regisztrálhat, fogadásokat tehet, egyenlegét kezelheti.
+- Megtekintheti saját fogadásait és azok státuszát.
 
-Admin:
+### Moderator: Organizer
 
-Teljes hozzáférése van az összes felhasználó adatához, beleértve azok egyenlegét, státuszát, és jelszavait (hash-elve). Új felhasználó, meglévő törlése, jelszó alaphelyzetbe hozása,
+- Minden jogot megkap, amit a User szerepkör is, de ezen felül:
+  - Készíthet új eseményeket és törölhet régieket ha még nem fogadtak rá.
+
+### Admin
+
+- Teljes hozzáférése van az összes felhasználó adatához, beleértve azok egyenlegét, státuszát, és jelszavait (hash-elve).
+- Új felhasználók létrehozása, meglévők szerkesztése.
