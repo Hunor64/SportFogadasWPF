@@ -17,16 +17,19 @@ Az UI terveket [itt találod](https://github.com/Hunor64/SportFogadasWPF/tree/ma
 
 ### User: Bettor
 
+- Példa Felhasználónév/Jelszó: john
 - Regisztrálhat, fogadásokat tehet, egyenlegét kezelheti.
 - Megtekintheti saját fogadásait és azok státuszát.
 
 ### Moderator: Organizer
 
+- Példa Felhasználónév/Jelszó: jane
 - Minden jogot megkap, amit a User szerepkör is, de ezen felül:
   - Készíthet új eseményeket és törölhet régieket ha még nem fogadtak rá.
 
 ### Admin
 
+- Példa Felhasználónév/Jelszó: admin
 - Teljes hozzáférése van az összes felhasználó adatához, beleértve azok egyenlegét, státuszát, és jelszavait (hash-elve).
 - Új felhasználók létrehozása, meglévők szerkesztése.
 
