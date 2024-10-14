@@ -21,6 +21,7 @@ namespace SportFogadas
     public partial class MainWindow : Window
     {
         public bool debugOn = false;
+        public bool trueGambling = false; //CSAK TRUE LEHET. SEMMI MÁS!!!!
 
         #region Initial Variables
         private DebugWindow debugWindow;
@@ -32,7 +33,6 @@ namespace SportFogadas
         string userPrivilage = "guest";
 
 
-        bool loggedIn = false;
         #endregion
 
         public MainWindow()
@@ -62,9 +62,24 @@ namespace SportFogadas
 
             ReadEvents();
         }
+
+        #region Create text
+        public TextBlock NewTextBlock(string content)
+        {
+            var block = new TextBlock()
+            {
+                Text = content,
+            };
+            return block;
+        }
+
+        #endregion
+
         #region Read Events From Database
         public void ReadEvents()
         {
+
+
             for (int i = 0; stpEvents.Children.Count != 0; i++)
             {
                 debugWindow.Write(stpEvents.Children.Count.ToString());
@@ -72,45 +87,97 @@ namespace SportFogadas
                 stpEvents.Children.Remove(stpEvents.Children[0]);
             }
             events = new List<Events>();
-            var eventReader = ReadDB("SELECT * FROM Events");
-
-            while (eventReader.Read())
+            using (var eventReader = ReadDB("SELECT * FROM Events"))
             {
-                events.Add(new Events()
+                while (eventReader.Read())
                 {
-                    EventID = eventReader.GetInt32("EventID"),
-                    EventName = eventReader.GetString("EventName"),
-                    EventDate = eventReader.GetDateTime("EventDate"),
-                    Category = eventReader.GetString("Category"),
-                    Location = eventReader.GetString("Location")
-                });
+                    events.Add(new Events()
+                    {
+                        EventID = eventReader.GetInt32("EventID"),
+                        EventName = eventReader.GetString("EventName"),
+                        EventDate = eventReader.GetDateTime("EventDate"),
+                        Category = eventReader.GetString("Category"),
+                        Location = eventReader.GetString("Location")
+                    });
+                }
             }
             debugWindow.Write($"{events.Count} events read from database");
-            eventReader.Close();
+            var newEvent = new StackPanel();
+            newEvent.Style = (Style)FindResource("EventStyle");
+
             events.ForEach(e =>
             {
-                debugWindow.Write($"{e.EventID},{e.EventName},{e.EventDate},{e.Category},{e.Location}");
-                stpEvents.Children.Add(
-                    new TextBlock()
+                var card = new Border();
+                card.Style = (Style)FindResource("CardStyle");
+
+
+                var eventName = NewTextBlock(e.EventName);
+                eventName.FontWeight = FontWeights.Bold;
+                var location = NewTextBlock(e.Location);
+                var category = NewTextBlock(e.Category);
+                var eventDate = NewTextBlock(e.EventDate.ToString());
+                int tempEventID = e.EventID;
+
+                var gomb = new Button();
+                gomb.Style = (Style)FindResource("BetButtonStyle");
+                if (userPrivilage == "user")
+                {
+                    gomb.Content = "Fogadás";
+                    gomb.Click += (s, e) =>
                     {
-                        Text = e.EventName
-                    });
-                stpEvents.Children.Add(
-                    new TextBlock()
+
+                        Bet betWindow = new Bet(userID, debugWindow, tempEventID);
+                        betWindow.ShowDialog();
+                        LoadUserBets();
+
+                    };
+                }
+                else if (userPrivilage == "organiser")
+                {
+                    gomb.Content = "Törlés";
+                    gomb.Click += (s, e) =>
                     {
-                        Text = e.Location
-                    });
-                stpEvents.Children.Add(
-                    new TextBlock()
+                        MessageBoxResult result = MessageBox.Show("Biztosan törölni szeretné az eseményt?", "Törlés", MessageBoxButton.YesNo);
+
+                        if (result.ToString() == "Yes")
+                        {
+                            using (var reader = ReadDB($"SELECT * FROM Bets WHERE EventID = {tempEventID}"))
+                            {
+                                if (!reader.HasRows)
+                                {
+                                    Exec("SET FOREIGN_KEY_CHECKS=OFF;");
+                                    Exec($"DELETE FROM Events WHERE EventID = {tempEventID}");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Az eseményhez tartozik fogadás, nem törölhető!");
+                                }
+                            }
+                        }
+                        ReadEvents();
+                    };
+
+                }
+
+                if (userID == -1)
+                {
+                    gomb.Visibility = Visibility.Collapsed;
+                }
+                card.Child = new StackPanel()
+                {
+                    Children =
                     {
-                        Text = e.Category
-                    });
-                stpEvents.Children.Add(
-                    new TextBlock()
-                    {
-                        Text = e.EventDate.ToString()
-                    });
+                        eventName,
+                        location,
+                        category,
+                        eventDate,
+                        gomb
+                    }
+                };
+                newEvent.Children.Add(card);
             });
+
+            stpEvents.Children.Add(newEvent);
         }
         #endregion
 
@@ -128,7 +195,6 @@ namespace SportFogadas
                 userName = loginRegister.UserName;
                 userID = loginRegister.UserId;
                 userPrivilage = loginRegister.Privilage;
-                loggedIn = true;
                 debugWindow.Write(userName);
                 debugWindow.Write(userID.ToString());
                 LoadUserBets();
@@ -156,9 +222,9 @@ namespace SportFogadas
                 btnLogout.Visibility = Visibility.Visible;
                 stpOngoingBets.Visibility = Visibility.Visible;
             }
+
             else
             {
-                loggedIn = false;
                 debugWindow.Write("No user logged in");
             }
         }
@@ -177,45 +243,91 @@ namespace SportFogadas
 
             lblUsername.Content = userName;
 
-            var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}");
-            while (betReader.Read())
+            using (var betReader = ReadDB($"SELECT * FROM Bets WHERE BettorsID = {userID}"))
             {
-                bets.Add(new UserBets()
+                while (betReader.Read())
                 {
-                    BetID = betReader.GetInt32("BetID"),
-                    BettorsID = betReader.GetInt32("BettorsID"),
-                    EventID = betReader.GetInt32("EventID"),
-                    Amount = betReader.GetInt32("Amount"),
-                    BetDate = betReader.GetDateTime("BetDate"),
-                    Odds = betReader.GetFloat("Odds"),
-                    Status = betReader.GetBoolean("Status")
-                });
+                    bets.Add(new UserBets()
+                    {
+                        BetID = betReader.GetInt32("BetID"),
+                        BettorsID = betReader.GetInt32("BettorsID"),
+                        EventID = betReader.GetInt32("EventID"),
+                        Amount = betReader.GetInt32("Amount"),
+                        BetDate = betReader.GetDateTime("BetDate"),
+                        Odds = betReader.GetFloat("Odds"),
+                        Status = betReader.GetBoolean("Status")
+                    });
 
+                }
             }
-            betReader.Close();
             debugWindow.Write($"{bets.Count} bets read from database");
 
-            var userReader = ReadDB($"SELECT * FROM Bettors WHERE BettorsID = {userID}");
-            userReader.Read();
-            lblBalance.Content = $"Egyenleg: {userReader.GetInt32("Balance")}";
-            userReader.Close();
+            using (var userReader = ReadDB($"SELECT * FROM Bettors WHERE BettorsID = {userID}"))
+            {
+                userReader.Read();
+                lblBalance.Content = $"Egyenleg: {userReader.GetInt32("Balance")}";
+            }
             debugWindow.Write($"Balance read from database");
 
-
             var stack = stpOngoingBets;
+            stack.Visibility = Visibility.Collapsed;
+            stack.Children.Clear();
+
             foreach (var bet in bets)
             {
-                debugWindow.Write($"{bet.BetID},{bet.BetDate},{bet.Odds},{bet.Amount},{bet.BettorsID},{bet.EventID},{bet.Status}");
+                stack.Visibility = Visibility.Visible;
 
-                stack.Children.Add
-                    (
-                    new TextBlock()
-                    {
-                        Text = $"Bet ID: {bet.BetID}, Event: {events.First(x => x.EventID == bet.EventID).EventName}, Amount: {bet.Amount}, Date: {bet.BetDate}, Odds: {bet.Odds}, Finised: {bet.Status}"
-                    }
-                    );
+                var title = $"Fogadás ID: {bet.BetID}";
+                var content = $"Esemény: {events.First(x => x.EventID == bet.EventID).EventName}\n" +
+                              $"Összeg: {bet.Amount}\n" +
+                              $"Dátum: {bet.BetDate}\n" +
+                              $"Szorzó: {bet.Odds}\n" +
+                              $"Befejeződött: {bet.Status}";
+
+                AddCardToStackPanel(stack, title, content);
             }
         }
+        private Border CreateCard(string title, string content)
+        {
+            var card = new Border();
+            card.Style = (Style)FindResource("BetCardStyle");
+
+            var titleLabel = new TextBlock()
+            {
+                Text = title,
+                FontWeight = FontWeights.Bold,
+                FontSize = 16,
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground = new SolidColorBrush(Colors.White)
+            };
+
+            var contentLabel = new TextBlock()
+            {
+                Text = content,
+                FontSize = 14,
+                Margin = new Thickness(0, 0, 0, 5),
+                Foreground = new SolidColorBrush(Colors.White)
+            };
+
+            card.Child = new StackPanel()
+            {
+                Children =
+                    {
+                        titleLabel,
+                        contentLabel
+                    }
+            };
+
+            return card;
+        }
+
+        private void AddCardToStackPanel(StackPanel stackPanel, string title, string content)
+        {
+            var card = CreateCard(title, content);
+            stackPanel.Style = (Style)FindResource("BetStyle");
+            stackPanel.Children.Add(card);
+        }
+
         #endregion
 
         #region Database Functions
@@ -223,9 +335,11 @@ namespace SportFogadas
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand(command, connection);
-                cmd.ExecuteNonQuery();
-                debugWindow.Write("Command executed successfully");
+                using (MySqlCommand cmd = new MySqlCommand(command, connection))
+                {
+                    cmd.ExecuteNonQuery();
+                    debugWindow.Write("Command executed successfully");
+                }
             }
             catch (Exception ex)
             {
@@ -251,23 +365,33 @@ namespace SportFogadas
         }
         #endregion
 
-        #region Event Handlers
+        #region On close override
         protected override void OnClosed(EventArgs e)
         {
-            connection.Close();
+            if (trueGambling)
+            {
+
+                KeepGambling keepGamblingWindow = new();
+                keepGamblingWindow.ShowDialog();
+
+                var newwin = new MainWindow();
+                newwin.Show();
+            }
+
             base.OnClosed(e);
             debugWindow.Close();
 
         }
         #endregion
 
-        #region Debug Button clicks
-        private void Button_Click(object sender, RoutedEventArgs e)
+        #region Button clicks
+        private void LogIn(object sender, RoutedEventArgs e)
         {
             Login();
+            ReadEvents();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void OrganiserPanel(object sender, RoutedEventArgs e)
         {
             if (userPrivilage == "organiser")
             {
@@ -281,7 +405,7 @@ namespace SportFogadas
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void TopUp(object sender, RoutedEventArgs e)
         {
             if (userID != -1)
             {
@@ -291,17 +415,17 @@ namespace SportFogadas
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void BetClick(object sender, RoutedEventArgs e)
         {
             if (userID != -1)
             {
-                Bet betWindow = new Bet(userID, debugWindow);
+                Bet betWindow = new Bet(userID, debugWindow, -1);
                 betWindow.ShowDialog();
                 LoadUserBets();
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void TopUpReal(object sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo
             {
@@ -310,7 +434,7 @@ namespace SportFogadas
             });
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void LogOut(object sender, RoutedEventArgs e)
         {
             userName = "";
             userID = -1;
@@ -323,9 +447,10 @@ namespace SportFogadas
             btnOrganiser.Visibility = Visibility.Collapsed;
             btnAdmin.Visibility = Visibility.Collapsed;
             stpOngoingBets.Visibility = Visibility.Collapsed;
-            lblUsername.Content = "Nincs bejelentkezve";
             lblBalance.Content = "";
+            lblUsername.Content = "";
             stpOngoingBets.Children.Clear();
+            ReadEvents();
         }
 
         private void btnAdmin_Click(object sender, RoutedEventArgs e)
@@ -334,6 +459,7 @@ namespace SportFogadas
             adminPanel.ShowDialog();
 
         }
+
         #endregion
     }
 }

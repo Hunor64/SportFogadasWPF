@@ -5,25 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Bejelentkezés Ablak" x:Name="mainwindow" Height="450" Width="300">
+        Title="Bejelentkezés Ablak" x:Name="mainwindow" Height="450" Width="300" Background="#d9d9d9"  BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        >
     <Grid>
-        <StackPanel x:Name="stpLogin">
-            <Label>Felhasználónév:</Label>
-            <TextBox KeyDown="pswLoginPassword_KeyDown" x:Name="txbLoginUsername"></TextBox>
-            <Label>Jelszó:</Label>
-            <PasswordBox KeyDown="pswLoginPassword_KeyDown" x:Name="pswLoginPassword"></PasswordBox>
-            <Button x:Name="btnLogin" Click="btnLogin_Click_1">Bejelentkezés</Button>
-            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click">Regisztrálás</Button>
+        <StackPanel x:Name="stpLogin" VerticalAlignment="Center" Height="420">
+            
+            <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBox  x:Name="txbLoginUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+               
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                    Background="Transparent" BorderBrush="Transparent"  Click="btn_Login_Textbox_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+
+            <Label Style="{StaticResource LabelStyle}">Jelszó:</Label>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,10">
+               
+                <PasswordBox  x:Name="pswLoginPassword" Style="{StaticResource PasswordBoxStyle}" KeyDown="pswLoginPassword_KeyDown" BorderBrush="#D3D3D3" BorderThickness="1"/>
+                
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                    Background="Transparent" BorderBrush="Transparent"  Click="btn_Login_Password_clear_Click" >
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+           
+         
+            <Button x:Name="btnLogin" Click="btnLogin_Click_1" Style="{DynamicResource ButtonStyle}">Bejelentkezés</Button>
+            <Button x:Name="btnShowRegister" Click="btnShowRegister_Click" Style="{DynamicResource ButtonStyle}" Margin="0,200,0,0"  Content="Regisztrálás"/>
         </StackPanel>
         <StackPanel x:Name="stpRegister" Visibility="Collapsed">
-            <Label>Felhasznlónév:</Label>
-            <TextBox x:Name="txbRegisterUsername"></TextBox>
-            <Label>Email</Label>
-            <TextBox x:Name="txbRegisterEmail"></TextBox>
-            <Label>Jelszó:</Label>
-            <PasswordBox x:Name="pswRegisterPassword" KeyDown="pswRegisterPassword_KeyDown"></PasswordBox>
-            <Button x:Name="btnRegister" Click="btnRegister_Click_1">Regisztrálás</Button>
-            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click">Bejelentkezés</Button>
+            <Label Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+              
+                <TextBox  x:Name="txbRegisterUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+                
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                    Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Textbox_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Label Style="{StaticResource LabelStyle}">Email</Label>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+               
+                <TextBox  x:Name="txbRegisterEmail" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+               
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                    Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Email_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Label Style="{StaticResource LabelStyle}">Jelszó:</Label>
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,10">
+                
+                <PasswordBox  x:Name="pswRegisterPassword"  Style="{StaticResource PasswordBoxStyle}" KeyDown="pswRegisterPassword_KeyDown" BorderBrush="#D3D3D3" BorderThickness="1"/>
+               
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+                    Background="Transparent" BorderBrush="Transparent"  Click="btn_Register_Password_clear_Click" >
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Button x:Name="btnRegister" Click="btnRegister_Click_1" Style="{DynamicResource ButtonStyle}">Regisztrálás</Button>
+            <Button x:Name="btnShowLogin" Click="btnShowLogin_Click" Style="{DynamicResource ButtonStyle}" Margin="0,130,0,0">Bejelentkezés</Button>
         </StackPanel>
         
     </Grid>

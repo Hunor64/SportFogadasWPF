@@ -5,17 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Admin Ablak" Height="450" Width="800">
+        Title="Admin Ablak" Height="450" Width="515" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
+                WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        >
     <Grid>
-        <StackPanel>
-            <Label>Felhasználónév:</Label>
-            <TextBox x:Name="txtUsername"/>
-            <Label>Jelszó:</Label>
-            <PasswordBox x:Name="pwdPassword"/>
-            <Label>Email:</Label>
-            <TextBox x:Name="txtEmail"/>
-            <Button Content="Felhasználó hozzáadása" Click="AddUser_Click"/>
-            <Button Content="Felhasználó változtatása" Click="EditUser_Click"/>
+        <StackPanel Height="400">
+            <Label  Style="{StaticResource LabelStyle}">Felhasználónév:</Label>
+            <Grid x:Name="grdUserName" Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBox Visibility="Visible" x:Name="txtUsername" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Visibility="Visible" Name="btnDeleteUsername" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="txtUsername_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            
+<!---->
+            <ComboBox SelectionChanged="UserComboBox_SelectionChanged" Height="40" Visibility="Collapsed" x:Name="UserComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" Width="500"/>
+<!---->
+            <Label  Style="{StaticResource LabelStyle}">Jelszó:</Label>
+            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <PasswordBox  x:Name="pwdPassword" Style="{StaticResource PasswordBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+Background="Transparent" BorderBrush="Transparent"  Click="pwdPassword_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Label  Style="{StaticResource LabelStyle}">Email:</Label>
+            <Grid Width="500" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <TextBox  x:Name="txtEmail" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1" />
+
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+Background="Transparent" BorderBrush="Transparent"  Click="txtEmail_clear_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Button x:Name="btnAddUser" Content="Felhasználó hozzáadása" Click="AddUser_Click" Margin="0,10,0,0"  Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnEditUser" Content="Felhasználó változtatása"  Margin="0,10,0,0" Click="EditUser_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="btnSwitchEdit" Content="Felhasználó változtatása" Click="btnSwitchEdit_Click"  Margin="0,100,0,0" Style="{StaticResource ButtonStyle}"/>
+            <Button Visibility="Collapsed" x:Name="btnSwitchCreate" Content="Felhasználó hozzáadása"  Margin="0,101,0,0" Click="btnSwitchCreate_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

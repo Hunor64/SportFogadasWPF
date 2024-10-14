@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 using MySql.Data.MySqlClient;
 
 namespace SportFogadas
@@ -126,6 +127,29 @@ namespace SportFogadas
             stpLoadBalance.Visibility = Visibility.Visible;
             stpDeLoadBalance.Visibility = Visibility.Hidden;
         }
+        #endregion
+
+        #region Cliks
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            textBox.Text = "";
+
+        }
+
+        private void txtDeposit_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtDeposit, null);
+        }
+        private void txtWithdrawl_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtWithdrawl, null);
+        }
+        private void txtBankNumber_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtBankNumber, null);
+        }
+
         #endregion
     }
 }

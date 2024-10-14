@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Fogadás Ablak" Height="450" Width="300">
+        Title="Fogadás Ablak" Height="450" Width="300" Background="#d9d9d9"  BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
+                WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        >
     <Grid>
         <StackPanel>
-            <Label x:Name="lblEgyneleg">Egyenleg:</Label>
-            <ComboBox x:Name="EventComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-            <TextBox x:Name="BetAmountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-            <Button Content="Tét véglegesítése" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="PlaceBetButton_Click"/>
+            <Label x:Name="lblEgyneleg" Style="{StaticResource LabelStyle}">Egyenleg:</Label>
+            <ComboBox  x:Name="EventComboBox" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource ComboboxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+           
+            <Grid Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox Margin="5,5,0,5"  x:Name="BetAmountTextBox" Style="{StaticResource TextBoxStyle}" BorderBrush="#D3D3D3" BorderThickness="1"/>
+                
+                <Button Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0"
+         Background="Transparent" BorderBrush="Transparent"  Click="btn_BET_Txt_Click">
+                    <TextBlock Text="✖" FontSize="14" Foreground="Gray"/>
+                </Button>
+            </Grid>
+            <Button Content="Tét véglegesítése" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Click="PlaceBetButton_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>

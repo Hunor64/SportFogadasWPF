@@ -1,0 +1,19 @@
+﻿<Window x:Class="SportFogadas.KeepGambling"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportFogadas"
+        mc:Ignorable="d"
+        Title="KeepGambling" Height="340" Width="400"
+        MinHeight="340" MinWidth="400"
+        MaxHeight="340" MaxWidth="400"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="KEEP_GAMBLING.jpg"/>
+    </Window.Background>
+    <Grid>
+    </Grid>
+</Window>

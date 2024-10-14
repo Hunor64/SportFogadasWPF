@@ -25,6 +25,7 @@ namespace SportFogadas
         public OrganiserPanel(DebugWindow debugWindow)
         {
             InitializeComponent();
+            dtpEventDate.DisplayDateStart = DateTime.Now;
             this.debugWindow = debugWindow;
         }
         #endregion
@@ -47,7 +48,7 @@ namespace SportFogadas
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Event created successfully!");
+                        MessageBox.Show("Esemény sikeresen elkészítve!");
                         debugWindow.Write("Event created successfully!");
                         this.DialogResult = true;
                         connection.Close();
@@ -56,7 +57,7 @@ namespace SportFogadas
                     else
                     {
                         debugWindow.Write("Failed to create event!");
-                        MessageBox.Show("Failed to create event!");
+                        MessageBox.Show("Sikertelen esemény készítés!");
                     }
                 }
             }
@@ -64,9 +65,31 @@ namespace SportFogadas
             {
                 debugWindow.Write("Failed to create event!");
                 debugWindow.Write(ex.ToString());
-                MessageBox.Show("Failed to create event!");
+                MessageBox.Show("Sikertelen esemény készítés!");
                 throw;
             }
+        }
+        #endregion
+
+        #region Other clicks
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;  
+                textBox.Text = "";
+           
+        }
+
+        private void txbEventName_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbEventName, null);
+        }
+        private void txbCategory_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbCategory, null);
+        }
+        private void txbLocation_button_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbLocation, null);
         }
         #endregion
     }

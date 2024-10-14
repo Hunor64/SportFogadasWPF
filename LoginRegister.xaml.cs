@@ -39,7 +39,7 @@ namespace SportFogadas
         #region Login Button Function
         private void btnLogin_Click()
         {
-            string tempUserName = txbLoginUsername.Text;
+            string tempUserName = txbLoginUsername.Text.ToLower();
             string password = pswLoginPassword.Password;
 
 
@@ -67,7 +67,7 @@ namespace SportFogadas
                                 UserName = tempUserName;
                                 UserId = reader.GetInt32("BettorsID");
                                 Privilage = reader.GetString("Privilage");
-                                MessageBox.Show("Login successful!");
+                                //MessageBox.Show("Sikeres Bejelentkezés!");
                                 this.DialogResult = true;
                                 connection.Close();
                                 this.Close();
@@ -75,13 +75,13 @@ namespace SportFogadas
                             else
                             {
                                 debugWindow.Write("Password mismatch!");
-                                MessageBox.Show("Incorrect password!");
+                                MessageBox.Show("Hibás jelszó!");
                             }
                         }
                         else
                         {
                             debugWindow.Write("No user found!");
-                            MessageBox.Show("User does not exist!");
+                            MessageBox.Show("Felhasználó nem létezik!");
                         }
                     }
                 }
@@ -92,7 +92,7 @@ namespace SportFogadas
         #region Register Button Function
         private void btnRegister_Click()
         {
-            UserName = txbRegisterUsername.Text;
+            UserName = txbRegisterUsername.Text.ToLower();
             string password = pswRegisterPassword.Password;
             string email = txbRegisterEmail.Text;
 
@@ -116,7 +116,7 @@ namespace SportFogadas
                             if (rowsAffected > 0)
                             {
                                 debugWindow.Write("User registered successfully!");
-                                MessageBox.Show("User registered successfully!");
+                                MessageBox.Show("Sikeres Regisztráció!");
                                 this.DialogResult = true;
                                 UserId = (int)command.LastInsertedId;
                                 Privilage = "user";
@@ -126,13 +126,13 @@ namespace SportFogadas
                             else
                             {
                                 UserName = "";
-                                MessageBox.Show("Failed to register user!");
+                                MessageBox.Show("Sikertelen regisztráció!");
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to register user!");
+                        MessageBox.Show("Sikertelen regisztráció!");
                         debugWindow.Write("Failed to register user!");
                         debugWindow.Write(ex.ToString());
                         throw;
@@ -145,25 +145,25 @@ namespace SportFogadas
                 {
                     debugWindow.Write("Username must be longer than 5 characters!");
                     debugWindow.Write(UserName);
-                    MessageBox.Show("Username must be longer than 5 characters!");
+                    MessageBox.Show("Felhasználónévnek 5 karakternél hosszabbnak kell lennie!");
                 }
                 else if (!(password.Length > 5))
                 {
                     debugWindow.Write("Password must be longer than 5 characters!");
                     debugWindow.Write(password);
-                    MessageBox.Show("Password must be longer than 5 characters!");
+                    MessageBox.Show("Jelszónak 5 karakternél hosszabbnak kell lennie!");
                 }
                 else if (!HasNumber(password))
                 {
                     debugWindow.Write("Password must contain a number!");
                     debugWindow.Write(password);
-                    MessageBox.Show("Password must contain a number!");
+                    MessageBox.Show("Jelszónak számot is kell tartalmaznia!");
                 }
                 else if (!HasSpecialChar(password))
                 {
                     debugWindow.Write("Password must contain a special character!");
                     debugWindow.Write(password);
-                    MessageBox.Show("Password must contain a special character!");
+                    MessageBox.Show("Jelszónak különleges karaktert is kell tartalmaznia!");
                 }
                 else
                 {
@@ -172,7 +172,7 @@ namespace SportFogadas
                     debugWindow.Write(email);
                     debugWindow.Write($"Email contains a dot: {email.Contains('.').ToString()}");
                     debugWindow.Write($"Email contains an at: {email.Contains('@').ToString()}");
-                    MessageBox.Show("Invalid email address!");
+                    MessageBox.Show("Hibás email cím!");
                 }
             }
         }
@@ -258,6 +258,42 @@ namespace SportFogadas
         {
             btnLogin_Click();
         }
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.Password = ""; // Clear PasswordBox password
+            }
+            else if (sender is TextBox textBox)
+            {
+                textBox.Text = ""; // Clear TextBox text
+            }
+            
+        }
+
+        private void btn_Login_Password_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pswLoginPassword, null);
+        }
+        private void btn_Login_Textbox_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbLoginUsername, null);
+        }
+        private void btn_Register_Password_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pswRegisterPassword, null);
+        }
+        private void btn_Register_Textbox_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbRegisterUsername, null);
+        }
+        private void btn_Register_Email_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txbRegisterEmail, null);
+        }
+
+
         #endregion
     }
 }

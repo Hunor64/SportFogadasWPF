@@ -3,6 +3,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SportFogadas
 {
@@ -23,18 +24,40 @@ namespace SportFogadas
             string query = "INSERT INTO Bettors (Username, Password, Email, JoinDate, IsActive, Privilage) VALUES (@Username, @Password, @Email, @JoinDate, @IsActive, @Privilage)";
 
             ExecuteQuery(query, username, password, email);
+            ComboBoxFill();
+
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsername.Text;
+            string username = UserComboBox.Text;
             string password = pwdPassword.Password;
             string email = txtEmail.Text;
             string query = "UPDATE Bettors SET Password=@Password, Email=@Email WHERE Username=@Username";
 
             ExecuteQuery(query, username, password, email);
+            ComboBoxFill();
         }
+        public void ComboBoxFill()
+        {
+            UserComboBox.Items.Clear();
 
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT Username FROM Bettors", connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                debugWindow.Write(reader.HasRows.ToString());
+                if (reader != null && reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string username = reader.GetString("Username");
+                        UserComboBox.Items.Add(username);
+                    }
+                }
+            }
+        }
         private void ExecuteQuery(string query, string username, string password, string email)
         {
             using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
@@ -51,11 +74,11 @@ namespace SportFogadas
                     command.Parameters.AddWithValue("@Privilage", "user");
 
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Operation successful!");
+                    MessageBox.Show("Siker!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Hiba: " + ex.Message);
                 }
             }
         }
@@ -87,5 +110,78 @@ namespace SportFogadas
         #endregion
         #endregion
 
+        #region Clear clicks
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox)
+            {
+                passwordBox.Password = ""; // Clear PasswordBox password
+            }
+            else if (sender is TextBox textBox)
+            {
+                textBox.Text = ""; // Clear TextBox text
+            }
+
+        }
+
+        private void pwdPassword_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(pwdPassword, null);
+        }
+        private void txtUsername_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtUsername, null);
+        }
+        private void txtEmail_clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear_Click(txtEmail, null);
+        }
+
+        #endregion
+
+        private void btnSwitchEdit_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddUser.Visibility = Visibility.Collapsed;
+            btnEditUser.Visibility = Visibility.Visible;
+            btnSwitchEdit.Visibility = Visibility.Collapsed;
+            btnSwitchCreate.Visibility = Visibility.Visible;
+            UserComboBox.Visibility = Visibility.Visible;
+            grdUserName.Visibility = Visibility.Collapsed;
+            ComboBoxFill();
+
+        }
+
+        private void btnSwitchCreate_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddUser.Visibility = Visibility.Visible;
+            btnEditUser.Visibility = Visibility.Collapsed;
+            btnSwitchEdit.Visibility = Visibility.Visible;
+            btnSwitchCreate.Visibility = Visibility.Collapsed;
+            UserComboBox.Visibility = Visibility.Collapsed;
+            grdUserName.Visibility = Visibility.Visible;
+            ComboBoxFill();
+
+        }
+
+        private void UserComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            pwdPassword.Password = "";
+            string username = UserComboBox.SelectedItem.ToString();
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=Bets;Uid=root;Pwd=;"))
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand($"SELECT * FROM Bettors WHERE Username = \"{username}\"", connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                debugWindow.Write(reader.HasRows.ToString());
+                if (reader != null && reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        txtEmail.Text = reader.GetString("Email");
+                    }
+                }
+            }
+        }
     }
 }

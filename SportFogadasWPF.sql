@@ -49,5 +49,5 @@ INSERT INTO `Events` (`EventName`, `EventDate`, `Category`, `Location`) VALUES
 
 INSERT INTO `Bets` (`BetDate`, `Odds`, `Amount`, `BettorsID`, `EventID`, `Status`) VALUES
 ('2023-04-01', 2.5, 200, 1, 1, 1),
-('2023-04-02', 1.8, 150, 2, 2, 0),
+('2023-04-02', 1.8, 150, 4, 2, 0),
 ('2023-04-03', 3.0, 300, 1, 3, 1);

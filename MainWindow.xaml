@@ -5,39 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportFogadas"
         mc:Ignorable="d"
-        Title="Fő Ablak" Height="450" Width="800"
-        Background="#f0f0f0">
+        Title="Fő Ablak" Height="450" Width="800" Background="#d9d9d9" BorderBrush="#515151" BorderThickness="1" WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
     <Grid>
         <StackPanel>
-            <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#3b5998">
-                <Label x:Name="lblUsername" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0">Nincs bejelentkezve</Label>
-                <Label x:Name="lblBalance" Foreground="White" FontWeight="Bold" FontSize="16" Margin="0,0,10,0"></Label>
-                <Button x:Name="btnLogin" Click="Button_Click" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Bejelentkezés
-                </Button>
-                <Button Visibility="Collapsed" x:Name="btnLogout" Click="Button_Click_5" Background="#f44336" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Ki jelentkezés
-                </Button>
-                <Button x:Name="btnTopup" Visibility="Collapsed" Click="Button_Click_2" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Pénz Feltöltés (Debug)
-                </Button>
-                <Button Visibility="Collapsed" x:Name="btnRealTopup" Click="Button_Click_4" Background="#FFC107" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Pénz Feltöltés (Real, Trust)
-                </Button>
-                <Button x:Name="btnBet" Visibility="Collapsed" Click="Button_Click_3" Background="#2196F3" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Fogadás
-                </Button>
-                <Button x:Name="btnOrganiser" Click="Button_Click_1" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Rendező Oldal
-                </Button>
-                <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Background="#9C27B0" Foreground="White" FontWeight="Bold" Margin="0,0,10,0">
-                    Admin Oldal
-                </Button>
-            </StackPanel>
-            <StackPanel x:Name="stpOngoingBets" Margin="10" Visibility="Collapsed">
+            <StackPanel x:Name="stpHeader" Orientation="Horizontal" Background="#65558f">
 
+                <Grid>
+                  
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnTopup" Visibility="Collapsed" Grid.Column="2" Grid.RowSpan="2" Click="TopUp" Style="{DynamicResource MainWButtonStyle}" Background="#f37748">
+                        Pénz Feltöltés (Debug)
+                    </Button>
+                    <Button Visibility="Collapsed" x:Name="btnRealTopup" Grid.Column="3" Grid.RowSpan="2" Click="TopUpReal" Style="{DynamicResource MainWButtonStyle}" Background="#d56062">
+                        Pénz Feltöltés (Real, Trust)
+                    </Button>
+                    <Button x:Name="btnBet" Visibility="Collapsed" Click="BetClick" Grid.RowSpan="2" Grid.Column="1" Style="{DynamicResource MainWButtonStyle}" Background="Teal">
+                        Fogadás
+                    </Button>
+                    <Button x:Name="btnOrganiser" Click="OrganiserPanel" Visibility="Collapsed" Grid.RowSpan="2" Grid.Column="0" Style="{DynamicResource MainWButtonStyle}" Background="Black">
+                        Rendező Oldal
+                    </Button>
+                    <Button x:Name="btnAdmin" Click="btnAdmin_Click" Visibility="Collapsed" Grid.RowSpan="2" Grid.Column="0" Style="{DynamicResource MainWButtonStyle}" Background="Black">
+                        Admin Oldal
+                    </Button>
+
+                    <Button x:Name="btnLogin" Grid.Column="4" Click="LogIn" Grid.RowSpan="2" Style="{DynamicResource MainWButtonStyle}" Foreground="Black" >
+                        Bejelentkezés
+                    </Button>
+                    <Button Visibility="Collapsed" Grid.Column="4" x:Name="btnLogout" Grid.RowSpan="2" Click="LogOut" Style="{DynamicResource MainWButtonStyle}" Foreground="Black">
+                        Kijelentkezés
+                    </Button>
+                    <StackPanel Grid.Column="5" Margin="200,0,0,0" Grid.RowSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                         
+                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="0"  x:Name="lblUsername" Foreground="White"  FontSize="16" Margin="0,0,10,0"></Label>
+                            <Label Style="{StaticResource LabelStyle}"  Grid.Row="1"  x:Name="lblBalance"  Foreground="White"  FontSize="10" Margin="0,0,10,0"></Label>
+                        </Grid>
+                    
+                    </StackPanel>
+                </Grid>
+           
             </StackPanel>
-            <Grid x:Name="grdCurrentEvents" Margin="10">
+            
+                <StackPanel x:Name="stpOngoingBets" Margin="10" HorizontalAlignment="Center"/>
+            
+            <Grid HorizontalAlignment="Center" x:Name="grdCurrentEvents" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
