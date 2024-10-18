@@ -43,9 +43,9 @@ INSERT INTO `bettors` (`BettorsID`, `Username`, `Password`, `Balance`, `Email`, 
 (4, 'a', '1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75', 0, 'a', '2024-10-03', 1, 'user');
 
 INSERT INTO `Events` (`EventName`, `EventDate`, `Category`, `Location`) VALUES
-('Football Match', '2023-05-10', 'Sports', 'Stadium A'),
-('Basketball Game', '2023-06-15', 'Sports', 'Arena B'),
-('Concert', '2023-07-20', 'Entertainment', 'Concert Hall C');
+('Fradi fog nyerni', '2023-05-10', 'Sport', 'Stadium A'),
+('Joe Biden fog nyerni', '2023-06-15', 'Politika', 'Arena B'),
+('Koncert', '2023-07-20', 'Szórakozás', 'Concert Hall C');
 
 INSERT INTO `Bets` (`BetDate`, `Odds`, `Amount`, `BettorsID`, `EventID`, `Status`) VALUES
 ('2023-04-01', 2.5, 200, 1, 1, 1),
