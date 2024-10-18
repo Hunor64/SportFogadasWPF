@@ -429,7 +429,7 @@ namespace SportFogadas
         {
             Process.Start(new ProcessStartInfo
             {
-                FileName = "https://fos.hu/1grj",
+                FileName = "https://fos.hu/1h5u",
                 UseShellExecute = true
             });
         }
